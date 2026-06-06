@@ -35,8 +35,7 @@ export default function Footer() {
                 lineHeight: 1.6,
               }}
             >
-              Digital loyalty that lives in your customers&apos; wallet. No app, no plastic
-              — just regulars coming back.
+              Digital loyalty that lives in your customers&apos; wallet. No app, no plastic. Just regulars coming back.
             </p>
           </div>
 

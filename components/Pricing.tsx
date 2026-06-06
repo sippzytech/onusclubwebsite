@@ -22,7 +22,7 @@ const FEATURES = [
   'Birthday & anniversary rewards',
   'Nearby location alerts',
   'Repeat-visit analytics',
-  'Customer data export — always yours',
+  'Customer data export, always yours',
 ]
 
 export default function Pricing() {
@@ -126,7 +126,7 @@ export default function Pricing() {
             </div>
 
             <p style={{ fontSize: 14, color: 'rgba(244,241,233,0.55)', marginBottom: 6 }}>
-              First 3 months — then <strong style={{ color: 'rgba(244,241,233,0.8)' }}>€30/month</strong>
+              First 3 months, then <strong style={{ color: 'rgba(244,241,233,0.8)' }}>€30/month</strong>
             </p>
 
             <div style={{ height: 1, background: 'rgba(244,241,233,0.1)', margin: '28px 0' }} />
@@ -181,13 +181,13 @@ export default function Pricing() {
                 className="font-serif"
                 style={{ fontSize: 52, fontWeight: 400, letterSpacing: '-0.03em', color: 'var(--color-deep-coal)', lineHeight: 1 }}
               >
-                €300
+                €25
               </span>
-              <span style={{ fontSize: 15, color: 'var(--color-stone)', marginLeft: 6 }}>/year</span>
+              <span style={{ fontSize: 15, color: 'var(--color-stone)', marginLeft: 6 }}>/month</span>
             </div>
 
             <p style={{ fontSize: 14, color: 'var(--color-stone)', marginBottom: 6 }}>
-              €25/month — <strong style={{ color: '#B0894F' }}>save €60</strong> vs monthly
+              Billed as €300/year, <strong style={{ color: '#B0894F' }}>save €60</strong> vs monthly
             </p>
 
             <div style={{ height: 1, background: 'var(--color-ash-gray)', margin: '28px 0' }} />
@@ -202,7 +202,7 @@ export default function Pricing() {
             </ul>
 
             <Button variant="ink" href="#demo">
-              Start yearly — save €60
+              Start yearly at €25/month
             </Button>
           </div>
 

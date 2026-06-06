@@ -14,7 +14,7 @@ const H2_WORDS = 'Questions we get asked a lot.'.split(' ')
 const FAQS = [
   {
     q: 'Do my customers need to download an app?',
-    a: 'No — that\'s the whole point. Customers scan a QR code and the loyalty card is added directly to Apple Wallet or Google Wallet. Nothing to download, nothing to create an account for.',
+    a: 'No. That\'s the whole point. Customers scan a QR code and the loyalty card is added directly to Apple Wallet or Google Wallet. Nothing to download, nothing to create an account for.',
   },
   {
     q: 'Which phones does it work on?',
@@ -26,23 +26,23 @@ const FAQS = [
   },
   {
     q: 'How do I add stamps at the counter?',
-    a: 'Your staff open the OnUsClub dashboard on any phone, tablet, or computer and scan the barcode on the customer\'s wallet card. One tap adds the stamp — the card updates on the customer\'s phone instantly.',
+    a: 'Your staff open the OnUsClub dashboard on any phone, tablet, or computer and scan the barcode on the customer\'s wallet card. One tap adds the stamp and the card updates on the customer\'s phone instantly.',
   },
   {
     q: 'What happens after the 3-month intro period?',
-    a: 'After your first 3 months at €18/month, your plan continues at €30/month — or you can switch to the yearly plan (€300/year) to lock in the lower rate. We\'ll remind you before anything changes.',
+    a: 'After your first 3 months at €18/month, your plan continues at €30/month. You can switch to the yearly plan (€300/year) any time to lock in the lower rate. We\'ll remind you before anything changes.',
   },
   {
     q: 'Can I cancel at any time?',
-    a: 'Yes. Monthly plans can be cancelled at any time with no penalty. Yearly plans are billed annually — if you cancel mid-year we don\'t offer refunds, but you keep access until the end of your billing period.',
+    a: 'Yes. Monthly plans can be cancelled at any time with no penalty. Yearly plans are billed annually. If you cancel mid-year we don\'t offer refunds, but you keep access until the end of your billing period.',
   },
   {
     q: 'Can I use OnUsClub across multiple locations?',
-    a: 'The current plan covers one location. Multi-location support is on our roadmap — reach out and we\'ll let you know as soon as it\'s available.',
+    a: 'The current plan covers one location. Multi-location support is on our roadmap. Reach out and we\'ll let you know as soon as it\'s available.',
   },
   {
     q: 'Who owns my customer data?',
-    a: 'You do, always. Every customer who joins your loyalty program is yours — not ours. You can export your full customer list at any time. We never sell or share your data with third parties.',
+    a: 'You do, always. Every customer who joins your loyalty program is yours, not ours. You can export your full customer list at any time. We never sell or share your data with third parties.',
   },
 ]
 

@@ -159,7 +159,7 @@ export default function FinalCTA() {
                 maxWidth: 400,
               }}
             >
-              We&apos;ll set up a live wallet loyalty card for your business so you see exactly what your customers will — no obligation, no hard sell.
+              We&apos;ll set up a live wallet loyalty card for your business so you see exactly what your customers will. No obligation, no hard sell.
             </p>
 
             <ul className="demo-trust" style={{ listStyle: 'none', padding: 0, margin: '36px 0 0' }}>

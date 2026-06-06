@@ -10,20 +10,20 @@ export const NAV_LINKS = [
 export const HERO = {
   eyebrow: 'Digital loyalty · No app required',
   h1: "The next one's on us.",
-  lead: 'A loyalty card that lives in Apple & Google Wallet — no app to download, no plastic to print. Customers tap once, show the code at the counter, and keep coming back.',
-  note: 'Built for cafés, salons, barbers, dentists & gyms — starting in the Netherlands.',
+  lead: 'A loyalty card that lives in Apple & Google Wallet. No app to download, no plastic to print. Customers tap once, show the code at the counter, and keep coming back.',
+  note: 'Built for cafés, salons, barbers, dentists & gyms. Starting in the Netherlands.',
 }
 
 export const STEPS = [
   {
     num: '01',
     h: "They scan, you're set",
-    p: 'A customer scans your QR code and adds their loyalty card straight to Apple or Google Wallet. One tap — nothing to download, nothing to print.',
+    p: 'A customer scans your QR code and adds their loyalty card straight to Apple or Google Wallet. One tap. Nothing to download, nothing to print.',
   },
   {
     num: '02',
     h: 'The card lives in their wallet',
-    p: 'Their stamp card sits alongside boarding passes and bank cards. It updates in real time — no app launch, no refresh, no friction.',
+    p: 'Their stamp card sits alongside boarding passes and bank cards. It updates in real time. No app launch, no refresh, no friction.',
   },
   {
     num: '03',
@@ -44,15 +44,15 @@ export const FEATURES = [
   },
   {
     h: 'Apple & Google Wallet',
-    p: 'Native wallet passes that update in real time and look at home on every phone — no plastic, no paper punch cards.',
+    p: 'Native wallet passes that update in real time and look at home on every phone. No plastic, no paper punch cards.',
   },
   {
     h: 'You own your list',
-    p: "Every customer is yours, not the platform's. Export your list any time — your data never gets locked away.",
+    p: "Every customer is yours, not the platform's. Export your list any time. Your data never gets locked away.",
   },
   {
     h: 'Wallet push notifications',
-    p: 'When a customer is one stamp away from a reward, their phone nudges them automatically — no extra channel, no extra cost.',
+    p: 'When a customer is one stamp away from a reward, their phone nudges them automatically. No extra channel, no extra cost.',
   },
   {
     h: 'Counter-simple scanning',
@@ -60,19 +60,19 @@ export const FEATURES = [
   },
   {
     h: 'Repeat-visit analytics',
-    p: "See who's coming back, how often, and what's working — so you can prove the program is paying for itself.",
+    p: "See who's coming back, how often, and what's working. Prove the program is paying for itself.",
   },
   {
     h: 'Birthday & anniversary rewards',
-    p: 'Automatically send a reward on a customer\'s birthday or loyalty anniversary — a personal touch that brings them back on their special day.',
+    p: 'Automatically send a reward on a customer\'s birthday or loyalty anniversary. A personal touch that brings them back on their special day.',
   },
   {
     h: 'Nearby location alerts',
-    p: 'When a loyal customer walks past your door, their wallet pass pings them automatically — turning passersby into paying visits.',
+    p: 'When a loyal customer walks past your door, their wallet pass pings them automatically, turning passersby into paying visits.',
   },
   {
     h: 'Custom-branded passes',
-    p: 'Your logo, your colors, your name — every wallet card looks like it was built by you, not a third-party platform.',
+    p: 'Your logo, your colors, your name on every wallet card. It looks like it was built by you, not a third-party platform.',
   },
 ]
 
@@ -83,7 +83,7 @@ export const INVERT = {
     {
       h: 'Instead of paper punch cards',
       rows: [
-        "Never lost at the bottom of a bag — it's always in their phone.",
+        "Never lost at the bottom of a bag. It's always in their phone.",
         'No reprints, no stamps that smudge, no fraud from photocopies.',
         'Every stamp becomes data you can actually use.',
       ],
@@ -92,7 +92,7 @@ export const INVERT = {
       h: 'Instead of app-based platforms',
       rows: [
         'No download wall between a new customer and their first stamp.',
-        "Your customers stay yours — not members of someone else's app.",
+        "Your customers stay yours, not members of someone else's app.",
         'One flat price per location. No per-customer fees as you grow.',
       ],
     },
@@ -103,19 +103,19 @@ export const CARD_TYPES = [
   {
     tag: 'Start here',
     h: 'Stamp cards',
-    p: 'Buy nine, get the tenth free. The digital punch card customers already understand — live in their wallet in one tap.',
+    p: 'Buy nine, get the tenth free. The digital punch card customers already understand, live in their wallet in one tap.',
     lead: true,
   },
   {
     tag: 'Add-on',
     h: 'Gift cards',
-    p: "Sell prepaid balance straight to a customer's wallet — cash up front and a reason to come back and spend it.",
+    p: "Sell prepaid balance straight to a customer's wallet. Cash up front and a reason to come back and spend it.",
     lead: false,
   },
   {
     tag: 'Add-on',
     h: 'Points & rewards',
-    p: 'For higher-value visits — earn points per spend and redeem them for the rewards you choose.',
+    p: 'For higher-value visits. Earn points per spend and redeem them for the rewards you choose.',
     lead: false,
   },
 ]

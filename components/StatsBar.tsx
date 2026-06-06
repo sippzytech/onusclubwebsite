@@ -11,7 +11,7 @@ const STATS = [
   { pre: '<', num: 5, suffix: ' min', decimal: false, label: 'Setup time, no hardware needed' },
   { pre: '', num: 0, suffix: ' apps', decimal: false, label: 'Nothing for your customers to download' },
   { pre: '', num: 1, suffix: ' tap', decimal: false, label: 'To add the card to Apple or Google Wallet' },
-  { pre: '', num: 100, suffix: '%', decimal: false, label: 'Your customer data — never locked away' },
+  { pre: '', num: 100, suffix: '%', decimal: false, label: 'Your customer data, always in your hands' },
 ]
 
 export default function StatsBar() {

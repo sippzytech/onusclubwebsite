@@ -4,11 +4,47 @@ import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { Check } from 'lucide-react'
-import { INVERT } from '@/lib/content'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+import { ParallaxFeatureSection, FeatureSectionData } from '@/components/ui/parallax-scroll-feature-section'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
+
+const H2_WORDS = 'Four things that set us apart.'.split(' ')
+
+const SECTIONS: FeatureSectionData[] = [
+  {
+    num: '01',
+    title: 'Joins in one tap',
+    sub: 'No app to download. Apple & Google Wallet.',
+    description: 'Customer scans your QR code at the counter. One tap adds the branded card directly to their wallet. The card lives on their lock screen, always visible.',
+    imageUrl: '/mockup_1.png',
+    reverse: false,
+  },
+  {
+    num: '02',
+    title: 'Earns at the counter',
+    sub: 'Counter-simple scanning. No training needed.',
+    description: 'Staff opens the scanner on any phone or tablet. Customer shows their wallet card to be scanned. Stamp added instantly, card updates in real time.',
+    imageUrl: '/mockup_2.png',
+    reverse: true,
+  },
+  {
+    num: '03',
+    title: 'Comes back automatically',
+    sub: 'Push notifications. Birthday rewards. Geo alerts.',
+    description: 'Wallet nudges customers before they forget. Birthday and anniversary rewards run on autopilot. Location alerts fire when regulars walk nearby.',
+    imageUrl: '/mockup_3.png',
+    reverse: false,
+  },
+  {
+    num: '04',
+    title: 'Pays off, measurably',
+    sub: 'You own your list. Real analytics. Real results.',
+    description: 'Track active members and repeat visit rates. See which rewards drive customers back. Export your full customer list any time.',
+    imageUrl: '/mockup_4.png',
+    reverse: true,
+  },
+]
 
 export default function InvertBlock() {
   const containerRef = useRef<HTMLElement>(null)
@@ -17,117 +53,54 @@ export default function InvertBlock() {
     () => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: containerRef.current, start: 'top 80%', once: true },
+      gsap.timeline({
+        scrollTrigger: { trigger: '.why-header', start: 'top 82%', once: true },
         defaults: { ease: 'power3.out' },
       })
-
-      tl.from('.invert-card', { y: 56, scale: 0.97, opacity: 0, duration: 0.8 })
-        .from('.invert-eyebrow', { opacity: 0, y: 8, duration: 0.4 }, '-=0.5')
-        .from('.rev-word', { yPercent: 110, duration: 0.65, stagger: 0.05 }, '-=0.2')
-        .from('.invert-col-head', { opacity: 0, y: 10, duration: 0.45, stagger: 0.1 }, '-=0.3')
-        .from('.check-row', {
-          x: -20,
-          opacity: 0,
-          duration: 0.45,
-          stagger: 0.06,
-          ease: 'power2.out',
-        }, '-=0.3')
+        .from('.why-eyebrow', { opacity: 0, y: 8, duration: 0.4 })
+        .from('.rev-word',   { yPercent: 110, duration: 0.65, stagger: 0.05 }, '-=0.15')
+        .from('.why-lead',   { opacity: 0, y: 12, duration: 0.5 }, '-=0.3')
     },
-    { scope: containerRef }
+    { scope: containerRef },
   )
 
   return (
-    <section ref={containerRef} id="compare" style={{ padding: '80px 0' }}>
+    <section
+      ref={containerRef}
+      id="compare"
+      style={{ padding: '80px 0 0', background: 'var(--color-bone-white)' }}
+    >
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-        <div
-          className="invert-card"
-          style={{
-            background: 'var(--color-obsidian)',
-            borderRadius: 22,
-            padding: '64px 56px',
-            color: 'var(--color-bone-white)',
-          }}
-        >
-          <Eyebrow className="invert-eyebrow" style={{ color: 'rgba(244,241,233,0.55)' }}>
-            {INVERT.eyebrow}
-          </Eyebrow>
-
+        <div className="why-header" style={{ textAlign: 'center', maxWidth: 600, margin: '0 auto' }}>
+          <Eyebrow className="why-eyebrow">Why OnUsClub</Eyebrow>
           <h2
             className="font-serif"
             style={{
-              fontSize: 'clamp(28px, 4vw, 48px)',
-              lineHeight: 1.12,
-              letterSpacing: '-0.018em',
-              color: 'var(--color-bone-white)',
+              fontSize: 'clamp(30px, 4vw, 52px)',
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+              color: 'var(--color-deep-coal)',
               marginTop: 14,
-              maxWidth: 640,
               fontWeight: 400,
             }}
           >
-            {INVERT.h2.split(' ').map((word, i, arr) => (
+            {H2_WORDS.map((word, i) => (
               <span
                 key={i}
                 className="word-clip"
-                style={i < arr.length - 1 ? { marginRight: '0.28em' } : undefined}
+                style={i < H2_WORDS.length - 1 ? { marginRight: '0.28em' } : undefined}
               >
                 <span className="rev-word">{word}</span>
               </span>
             ))}
           </h2>
-
-          <div className="invert-cols" style={{ marginTop: 44 }}>
-            {INVERT.cols.map((col) => (
-              <div key={col.h}>
-                <h3
-                  className="invert-col-head font-serif"
-                  style={{
-                    fontSize: 21,
-                    lineHeight: 1.2,
-                    letterSpacing: '-0.015em',
-                    color: 'var(--color-bone-white)',
-                    marginBottom: 14,
-                    fontWeight: 400,
-                  }}
-                >
-                  {col.h}
-                </h3>
-                {col.rows.map((row, ri) => (
-                  <div
-                    key={ri}
-                    className="check-row"
-                    style={{
-                      display: 'flex',
-                      gap: 12,
-                      padding: '12px 0',
-                      borderTop: ri === 0 ? 'none' : '1px solid rgba(244,241,233,0.12)',
-                    }}
-                  >
-                    <Check
-                      size={18}
-                      strokeWidth={1.8}
-                      style={{ color: 'var(--color-bone-white)', flexShrink: 0, marginTop: 2 }}
-                    />
-                    <p style={{ fontSize: 15, color: 'rgba(244,241,233,0.82)' }}>{row}</p>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
+          <p className="why-lead" style={{ marginTop: 16, fontSize: 16, color: 'var(--color-stone)', lineHeight: 1.65 }}>
+            Four things that turn a first-time visitor into someone who keeps coming back.
+          </p>
         </div>
       </div>
 
-      <style>{`
-        .invert-cols {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 40px;
-        }
-        @media (max-width: 820px) {
-          .invert-card { padding: 44px 28px !important; }
-          .invert-cols { grid-template-columns: 1fr; gap: 28px; }
-        }
-      `}</style>
+      <ParallaxFeatureSection sections={SECTIONS} />
     </section>
   )
 }

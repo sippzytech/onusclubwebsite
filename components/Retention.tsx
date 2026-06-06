@@ -117,7 +117,7 @@ export default function Retention() {
                 maxWidth: 400,
               }}
             >
-              Most customers forget to come back — not because they didn&apos;t enjoy it, but because
+              Most customers forget to come back, not because they didn&apos;t enjoy it, but because
               nothing nudged them. With OnUsClub, loyal regulars grow nearly 3× faster. By month
               six, businesses on OnUsClub have almost three times as many repeat customers as those
               running no loyalty program at all.
