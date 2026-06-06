@@ -2,9 +2,9 @@ export const PRICE = 'PRICE' // TODO: replace with actual price
 
 export const NAV_LINKS = [
   { label: 'How it works', href: '#how' },
-  { label: 'Retention', href: '#retention' },
   { label: 'Features', href: '#features' },
-  { label: 'Compare', href: '#compare' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'FAQ', href: '#faq' },
 ]
 
 export const HERO = {
@@ -123,9 +123,9 @@ export const CARD_TYPES = [
 export const FOOTER_LINKS = {
   Product: [
     { label: 'How it works', href: '#how' },
-    { label: 'Retention', href: '#retention' },
     { label: 'Features', href: '#features' },
-    { label: 'Compare', href: '#compare' },
+    { label: 'Pricing', href: '#pricing' },
+    { label: 'FAQ', href: '#faq' },
     { label: 'Book a demo', href: '#demo' },
   ],
   Company: [
