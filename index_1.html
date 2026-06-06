@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OnUsClub — The next one's on us</title>
+<meta name="description" content="Digital loyalty that lives in Apple & Google Wallet. No app to download. Built for cafés, salons, barbers, dentists and gyms." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* Colors */
+    --color-bone-white: #fafafb;
+    --color-graphite-ink: #2c2c2b;
+    --color-deep-coal: #1f1f1f;
+    --color-obsidian: #111111;
+    --color-press-black: #080808;
+    --color-stone: #70706f;
+    --color-fog: #cbcbcb;
+    --color-ash-gray: #e3e3e3;
+    --color-cloud: #ededed;
+    --color-slate: #444444;
+
+    --font-serif: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+    --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+    --page-max-width: 1200px;
+    --section-gap: 80px;
+
+    --shadow-lg: rgba(0,0,0,0.08) 0px 1px 20px 3px;
+    --shadow-xl: rgba(0,0,0,0.18) 0px 20px 60px 0px, rgba(0,0,0,0.08) 0px 4px 16px 0px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-inter);
+    background: var(--color-bone-white);
+    color: var(--color-obsidian);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  .wrap {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Typography */
+  .serif { font-family: var(--font-serif); font-weight: 400; }
+  .eyebrow {
+    font-family: var(--font-inter);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+  }
+  h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; }
+  h1 { font-size: clamp(40px, 6.2vw, 66px); line-height: 1.02; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(30px, 4vw, 48px); line-height: 1.12; letter-spacing: -0.018em; }
+  h3 { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.2; letter-spacing: -0.02em; }
+  p { font-size: 16px; color: var(--color-graphite-ink); }
+  .lead { font-size: 18px; line-height: 1.55; color: var(--color-graphite-ink); }
+  .muted { color: var(--color-stone); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-inter); font-size: 15px; font-weight: 500;
+    border-radius: 999px; padding: 11px 22px; cursor: pointer;
+    text-decoration: none; border: 1px solid transparent;
+    transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+  }
+  .btn-fill { background: var(--color-obsidian); color: var(--color-bone-white); }
+  .btn-fill:hover { background: var(--color-press-black); }
+  .btn-ink { background: var(--color-deep-coal); color: var(--color-bone-white); padding: 13px 26px; }
+  .btn-ink:hover { background: var(--color-obsidian); }
+  .btn-outline { background: transparent; border-color: var(--color-fog); color: var(--color-deep-coal); }
+  .btn-outline:hover { border-color: var(--color-graphite-ink); }
+  .btn-outline.on-dark { border-color: rgba(250,250,251,0.45); color: var(--color-bone-white); }
+  .btn-outline.on-dark:hover { border-color: var(--color-bone-white); }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    transition: background .3s ease, border-color .3s ease, box-shadow .3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  nav .nav-inner {
+    max-width: var(--page-max-width); margin: 0 auto; padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { font-family: var(--font-serif); font-size: 22px; letter-spacing: -0.02em; color: var(--color-bone-white); transition: color .3s ease; }
+  .logo b { font-weight: 600; }
+  .nav-links { display: flex; align-items: center; gap: 30px; }
+  .nav-links a.link {
+    font-size: 14px; font-weight: 500; color: rgba(250,250,251,0.82);
+    text-decoration: none; transition: color .2s ease;
+  }
+  .nav-links a.link:hover { color: var(--color-bone-white); }
+  .nav-cta { display: flex; align-items: center; gap: 12px; }
+  nav.scrolled { background: var(--color-bone-white); border-bottom: 1px solid var(--color-cloud); }
+  nav.scrolled .logo { color: var(--color-deep-coal); }
+  nav.scrolled .nav-links a.link { color: var(--color-graphite-ink); }
+  nav.scrolled .nav-links a.link:hover { color: var(--color-obsidian); }
+  nav.scrolled .btn-outline { border-color: var(--color-fog); color: var(--color-deep-coal); }
+  @media (max-width: 860px) { .nav-links a.link, .nav-cta .btn-outline { display: none; } }
+
+  /* Hero */
+  .hero {
+    position: relative; min-height: 100vh; display: flex; align-items: center;
+    background-color: #2a1d14; /* warm fallback behind photo */
+    overflow: hidden;
+  }
+  .hero-photo {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    z-index: 0;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(100deg, rgba(8,8,8,0.86) 0%, rgba(8,8,8,0.6) 42%, rgba(8,8,8,0.28) 100%);
+  }
+  .hero .wrap { position: relative; z-index: 2; width: 100%; padding-top: 120px; padding-bottom: 80px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
+  .hero-copy { max-width: 540px; }
+  .hero h1 { color: var(--color-bone-white); margin: 18px 0 22px; }
+  .hero .lead { color: rgba(250,250,251,0.82); max-width: 460px; }
+  .hero .eyebrow { color: rgba(250,250,251,0.7); }
+  .hero-actions { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+  .hero-note { margin-top: 22px; font-size: 13px; color: rgba(250,250,251,0.6); letter-spacing: 0.01em; }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+    .hero-overlay { background: linear-gradient(180deg, rgba(8,8,8,0.78) 0%, rgba(8,8,8,0.62) 100%); }
+  }
+
+  /* Wallet pass mockup */
+  .pass-stage { display: flex; justify-content: center; }
+  .pass {
+    width: 320px; background: var(--color-deep-coal); border-radius: 20px;
+    padding: 22px 22px 20px; color: var(--color-bone-white);
+    box-shadow: var(--shadow-xl);
+  }
+  .pass-top { display: flex; align-items: center; gap: 10px; padding-bottom: 18px; border-bottom: 1px solid rgba(250,250,251,0.12); }
+  .pass-mark {
+    width: 30px; height: 30px; border-radius: 999px; background: var(--color-bone-white);
+    color: var(--color-obsidian); display: grid; place-items: center;
+    font-family: var(--font-serif); font-weight: 600; font-size: 15px;
+  }
+  .pass-brand { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
+  .pass-merch { margin-left: auto; font-size: 11px; color: rgba(250,250,251,0.55); text-transform: uppercase; letter-spacing: 0.12em; }
+  .pass-label { margin: 18px 0 4px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250,250,251,0.55); }
+  .pass-title { font-family: var(--font-serif); font-size: 26px; letter-spacing: -0.01em; }
+  .stamps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 20px 0 8px; }
+  .stamp {
+    aspect-ratio: 1; border-radius: 999px; border: 1px solid rgba(250,250,251,0.28);
+    display: grid; place-items: center;
+  }
+  .stamp.filled { background: var(--color-bone-white); border-color: var(--color-bone-white); }
+  .stamp svg { width: 16px; height: 16px; }
+  .pass-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
+  .pass-foot span { font-size: 12px; color: rgba(250,250,251,0.7); }
+  .qr { width: 46px; height: 46px; display: grid; grid-template-columns: repeat(5,1fr); grid-template-rows: repeat(5,1fr); gap: 2px; }
+  .qr i { background: rgba(250,250,251,0.25); border-radius: 1px; }
+  .qr i.on { background: var(--color-bone-white); }
+
+  /* Sections */
+  section.block { padding: var(--section-gap) 0; }
+  .section-head { max-width: 640px; margin-bottom: 48px; }
+  .section-head h2 { margin-top: 14px; }
+  .section-head p { margin-top: 16px; }
+
+  /* Trust strip */
+  .trust { border-top: 1px solid var(--color-cloud); border-bottom: 1px solid var(--color-cloud); padding: 22px 0; background: var(--color-bone-white); }
+  .trust .wrap { display: flex; align-items: center; gap: 14px 40px; flex-wrap: wrap; justify-content: center; }
+  .trust span { font-size: 13px; color: var(--color-stone); }
+  .trust .verticals { font-family: var(--font-serif); font-size: 17px; color: var(--color-deep-coal); letter-spacing: -0.01em; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .step { padding: 28px 24px; border: 1px solid var(--color-ash-gray); border-radius: 16px; }
+  .step-num { font-family: var(--font-serif); font-size: 14px; color: var(--color-stone); letter-spacing: 0.14em; }
+  .step h3 { margin: 16px 0 10px; font-size: 22px; }
+  .step p { font-size: 15px; }
+  @media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
+
+  /* Features grid */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--color-ash-gray); border-radius: 16px; overflow: hidden; }
+  .feature { padding: 32px 28px; border-right: 1px solid var(--color-ash-gray); border-bottom: 1px solid var(--color-ash-gray); }
+  .features .feature:nth-child(3n) { border-right: none; }
+  .features .feature:nth-last-child(-n+3) { border-bottom: none; }
+  .feature .ic { width: 26px; height: 26px; color: var(--color-obsidian); margin-bottom: 18px; }
+  .feature h3 { font-size: 20px; margin-bottom: 8px; }
+  .feature p { font-size: 14.5px; }
+  @media (max-width: 820px) {
+    .features { grid-template-columns: 1fr; }
+    .feature { border-right: none; }
+    .features .feature:nth-last-child(-n+3) { border-bottom: 1px solid var(--color-ash-gray); }
+    .features .feature:last-child { border-bottom: none; }
+  }
+
+  /* Dark inverted block */
+  .invert { background: var(--color-obsidian); border-radius: 22px; padding: 64px 56px; color: var(--color-bone-white); }
+  .invert .eyebrow { color: rgba(250,250,251,0.55); }
+  .invert h2 { color: var(--color-bone-white); margin: 14px 0 0; max-width: 640px; }
+  .invert .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 44px; }
+  .invert .col h3 { color: var(--color-bone-white); font-size: 21px; margin-bottom: 14px; }
+  .invert .col p { color: rgba(250,250,251,0.7); font-size: 15px; }
+  .invert .col .row { display: flex; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(250,250,251,0.12); }
+  .invert .col .row:first-of-type { border-top: none; }
+  .invert .row svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; color: var(--color-bone-white); }
+  .invert .row p { color: rgba(250,250,251,0.82); font-size: 15px; }
+  @media (max-width: 820px) { .invert { padding: 44px 28px; } .invert .cols { grid-template-columns: 1fr; gap: 28px; } }
+
+  /* Card types */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ctype { padding: 30px 26px; border: 1px solid var(--color-ash-gray); border-radius: 16px; background: var(--color-bone-white); }
+  .ctype.lead-card { background: var(--color-cloud); }
+  .ctype .tag { display: inline-block; background: var(--color-ash-gray); color: var(--color-deep-coal); font-size: 12px; font-weight: 500; border-radius: 999px; padding: 4px 12px; margin-bottom: 16px; }
+  .ctype h3 { font-size: 22px; margin-bottom: 10px; }
+  .ctype p { font-size: 14.5px; }
+  @media (max-width: 820px) { .cards { grid-template-columns: 1fr; } }
+
+  /* Pricing */
+  .pricing { text-align: center; max-width: 620px; margin: 0 auto; }
+  .pricing .points { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin: 30px 0 36px; }
+  .pricing .points div { font-size: 14px; color: var(--color-graphite-ink); display: flex; align-items: center; gap: 8px; }
+  .pricing .points svg { width: 16px; height: 16px; color: var(--color-obsidian); }
+
+  /* Final CTA */
+  .final { text-align: center; }
+  .final h2 { max-width: 720px; margin: 14px auto 0; }
+  .final .lead { max-width: 520px; margin: 20px auto 0; }
+  .final .hero-actions { justify-content: center; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--color-cloud); padding: 56px 0 40px; }
+  .foot-grid { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+  .foot-brand { max-width: 280px; }
+  .foot-brand .logo { color: var(--color-deep-coal); }
+  .foot-brand p { font-size: 14px; color: var(--color-stone); margin-top: 14px; }
+  .foot-cols { display: flex; gap: 64px; flex-wrap: wrap; }
+  .foot-col h4 { font-family: var(--font-inter); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-stone); margin-bottom: 16px; font-weight: 500; }
+  .foot-col a { display: block; font-size: 14px; color: var(--color-graphite-ink); text-decoration: none; margin-bottom: 10px; }
+  .foot-col a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--color-graphite-ink); }
+  .foot-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--color-cloud); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .foot-bottom span { font-size: 13px; color: var(--color-stone); }
+
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  .hero .reveal { transition-duration: .9s; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="logo">On<b>Us</b>Club</div>
+    <div class="nav-links">
+      <a class="link" href="#how">How it works</a>
+      <a class="link" href="#features">Features</a>
+      <a class="link" href="#cards">Card types</a>
+      <a class="link" href="#pricing">Pricing</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-outline on-dark" href="#">Sign in</a>
+      <a class="btn btn-fill" href="#demo">Request demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <img class="hero-photo" alt="" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1800&auto=format&fit=crop" />
+  <div class="hero-overlay"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow reveal">Digital loyalty · No app required</div>
+        <h1 class="reveal" style="transition-delay:.08s">The next one's on us.</h1>
+        <p class="lead reveal" style="transition-delay:.16s">A loyalty card that lives in Apple&nbsp;&amp; Google Wallet — no app to download, no plastic to print. Customers tap once, show the code at the counter, and keep coming back.</p>
+        <div class="hero-actions reveal" style="transition-delay:.24s">
+          <a class="btn btn-ink" href="#demo">Request a demo</a>
+          <a class="btn btn-outline on-dark" href="#how">See how it works</a>
+        </div>
+        <div class="hero-note reveal" style="transition-delay:.32s">Built for cafés, salons, barbers, dentists &amp; gyms — starting in the Netherlands.</div>
+      </div>
+      <div class="pass-stage reveal" style="transition-delay:.2s">
+        <div class="pass">
+          <div class="pass-top">
+            <div class="pass-mark">O</div>
+            <div class="pass-brand">OnUsClub</div>
+            <div class="pass-merch">Café&nbsp;Bloom</div>
+          </div>
+          <div class="pass-label">Coffee Club</div>
+          <div class="pass-title">Buy 9, get the 10th free</div>
+          <div class="stamps">
+            <!-- 7 filled, 3 empty -->
+            <div class="stamp filled"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.8"><path d="M4 8h11v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z"/><path d="M15 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 3v2M10 3v2"/></svg></div>
+            <div class="stamp filled"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.8"><path d="M4 8h11v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z"/><path d="M15 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 3v2M10 3v2"/></svg></div>
+            <div class="stamp filled"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.8"><path d="M4 8h11v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z"/><path d="M15 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 3v2M10 3v2"/></svg></div>
+            <div class="stamp filled"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.8"><path d="M4 8h11v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z"/><path d="M15 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 3v2M10 3v2"/></svg></div>
+            <div class="stamp filled"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.8"><path d="M4 8h11v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z"/><path d="M15 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 3v2M10 3v2"/></svg></div>
+            <div class="stamp filled"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.8"><path d="M4 8h11v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z"/><path d="M15 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 3v2M10 3v2"/></svg></div>
+            <div class="stamp filled"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.8"><path d="M4 8h11v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z"/><path d="M15 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 3v2M10 3v2"/></svg></div>
+            <div class="stamp"></div>
+            <div class="stamp"></div>
+            <div class="stamp"></div>
+          </div>
+          <div class="pass-foot">
+            <span>1 more for a free coffee</span>
+            <div class="qr" aria-hidden="true">
+              <i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i>
+              <i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i>
+              <i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i>
+              <i></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i>
+              <i class="on"></i><i></i><i></i><i class="on"></i><i></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="wrap">
+    <span class="eyebrow">One platform for</span>
+    <span class="verticals">Cafés · Salons · Barbers · Dentists · Gyms · Bakeries</span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">How it works</div>
+      <h2>Three taps from first visit to a regular.</h2>
+      <p class="muted">No hardware to buy, no app for your customers to install. If your staff can scan a QR code, you can run OnUsClub.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>They add the card</h3>
+        <p class="muted">A customer scans your code and adds their loyalty card straight to Apple or Google Wallet. One tap — nothing to download.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.1s">
+        <div class="step-num">02</div>
+        <h3>You scan at the counter</h3>
+        <p class="muted">They show the card from their wallet. Your staff scans it and adds a stamp from a simple dashboard. Seconds, every time.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.2s">
+        <div class="step-num">03</div>
+        <h3>The reward's on you</h3>
+        <p class="muted">Stamps add up, the card updates itself, and a wallet notification nudges them back. The free one is on the house.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="block" id="features" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Why OnUsClub</div>
+      <h2>Loyalty that does the heavy lifting.</h2>
+    </div>
+    <div class="features">
+      <div class="feature reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 6h4"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+        <h3>No app to download</h3>
+        <p class="muted">Your customers will never install an app for a coffee. The card lives where they already keep their boarding passes.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay:.06s">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
+        <h3>Apple &amp; Google Wallet</h3>
+        <p class="muted">Native wallet passes that update in real time and look at home on every phone — no plastic, no paper punch cards.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay:.12s">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-7L9 5H6a2 2 0 0 0-2 2Z"/></svg>
+        <h3>You own your list</h3>
+        <p class="muted">Every customer is yours, not the platform's. Export your list any time — your data never gets locked away.</p>
+      </div>
+      <div class="feature reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.2 7.7L3 21l1.8-5.8A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+        <h3>WhatsApp re-engagement</h3>
+        <p class="muted">Bring lapsed regulars back through the channel they actually read — paired with wallet notifications that nudge for free.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay:.06s">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+        <h3>Counter-simple scanning</h3>
+        <p class="muted">A clean staff dashboard that adds a stamp in one tap. No training, no extra hardware, no slowing down the queue.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay:.12s">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16v-5M13 16V8M18 16v-3"/></svg>
+        <h3>Repeat-visit analytics</h3>
+        <p class="muted">See who's coming back, how often, and what's working — so you can prove the program is paying for itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVERTED CONTRAST BLOCK -->
+<section class="block">
+  <div class="wrap reveal">
+    <div class="invert">
+      <div class="eyebrow">Paper cards &amp; clunky apps, retired</div>
+      <h2>The same loyalty idea, without the friction nobody wanted.</h2>
+      <div class="cols">
+        <div class="col">
+          <h3>Instead of paper punch cards</h3>
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 7"/></svg><p>Never lost at the bottom of a bag — it's always in their phone.</p></div>
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 7"/></svg><p>No reprints, no stamps that smudge, no fraud from photocopies.</p></div>
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 7"/></svg><p>Every stamp becomes data you can actually use.</p></div>
+        </div>
+        <div class="col">
+          <h3>Instead of app-based platforms</h3>
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 7"/></svg><p>No download wall between a new customer and their first stamp.</p></div>
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 7"/></svg><p>Your customers stay yours — not members of someone else's app.</p></div>
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 7"/></svg><p>One flat price per location. No per-customer fees as you grow.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARD TYPES -->
+<section class="block" id="cards" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Card types</div>
+      <h2>Start with stamps. Grow when you're ready.</h2>
+      <p class="muted">Launch with the one mechanic every business understands, then add more as your program matures.</p>
+    </div>
+    <div class="cards">
+      <div class="ctype lead-card reveal">
+        <span class="tag">Start here</span>
+        <h3>Stamp cards</h3>
+        <p class="muted">Buy nine, get the tenth free. The digital punch card customers already understand — live in their wallet in one tap.</p>
+      </div>
+      <div class="ctype reveal" style="transition-delay:.08s">
+        <span class="tag">Add-on</span>
+        <h3>Gift cards</h3>
+        <p class="muted">Sell prepaid balance straight to a customer's wallet — cash up front and a reason to come back and spend it.</p>
+      </div>
+      <div class="ctype reveal" style="transition-delay:.16s">
+        <span class="tag">Add-on</span>
+        <h3>Points &amp; rewards</h3>
+        <p class="muted">For higher-value visits — earn points per spend and redeem them for the rewards you choose.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="block" id="pricing">
+  <div class="wrap">
+    <div class="pricing reveal">
+      <div class="eyebrow">Pricing</div>
+      <h2 style="margin-top:14px;">Simple, per location.</h2>
+      <div class="points">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 7"/></svg> One flat monthly price</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 7"/></svg> No per-customer fees</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 7"/></svg> Cancel any time</div>
+      </div>
+      <a class="btn btn-ink" href="#demo">Get pricing for your business</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="block" id="demo">
+  <div class="wrap">
+    <div class="final reveal">
+      <div class="eyebrow">Get started</div>
+      <h2>Put your loyalty card in every customer's pocket.</h2>
+      <p class="lead muted">Book a ten-minute demo and we'll set up a live wallet card for your business — so you can see exactly what your customers will.</p>
+      <div class="hero-actions">
+        <a class="btn btn-ink" href="mailto:hello@onusclub.com">Request a demo</a>
+        <a class="btn btn-outline" href="#how">See how it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">On<b>Us</b>Club</div>
+        <p>Digital loyalty that lives in your customers' wallet. No app, no plastic — just regulars coming back.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Product</h4>
+          <a href="#how">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#cards">Card types</a>
+          <a href="#pricing">Pricing</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#demo">Request demo</a>
+        </div>
+        <div class="foot-col">
+          <h4>Legal</h4>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">GDPR</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 OnUsClub. Made in the Netherlands.</span>
+      <span>hello@onusclub.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Trigger hero reveals immediately on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+  });
+</script>
+</body>
+</html>
