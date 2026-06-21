@@ -1,69 +1,25 @@
 'use client'
 
-const ITEMS = [
-  'Digital loyalty',
-  'Apple Wallet',
-  'Google Wallet',
-  'No app to download',
-  'Stamp cards',
-  'WhatsApp re-engagement',
-  'Real-time analytics',
-  'Zero plastic cards',
-  'Netherlands-first',
-  'Customer data you own',
-]
-
-const doubled = [...ITEMS, ...ITEMS]
+import Marquee from '@/components/ui/text-marque'
 
 export default function MarqueeStrip() {
   return (
-    <div
-      style={{
-        background: '#0d1c13',
-        borderBottom: '1px solid rgba(244,241,233,0.07)',
-        overflow: 'hidden',
-        padding: '13px 0',
-      }}
-    >
-      <div className="marquee-track">
-        {doubled.map((item, i) => (
-          <span key={i} className="marquee-item">
-            <span style={{ color: '#B0894F', margin: '0 14px', fontSize: 10 }}>◆</span>
-            <span
-              style={{
-                color: 'rgba(244,241,233,0.52)',
-                fontSize: 11,
-                fontWeight: 600,
-                letterSpacing: '0.11em',
-                textTransform: 'uppercase',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {item}
-            </span>
-          </span>
-        ))}
-      </div>
-
-      <style>{`
-        .marquee-track {
-          display: flex;
-          align-items: center;
-          width: max-content;
-          animation: marquee-scroll 30s linear infinite;
-        }
-        .marquee-item {
-          display: inline-flex;
-          align-items: center;
-        }
-        .marquee-track:hover {
-          animation-play-state: paused;
-        }
-        @keyframes marquee-scroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-      `}</style>
-    </div>
+    <section style={{
+      background: '#F4F1E9',
+      paddingTop: '48px',
+      paddingBottom: '48px',
+      overflow: 'hidden',
+      borderTop: '1px solid rgba(20,39,28,0.07)',
+      borderBottom: '1px solid rgba(20,39,28,0.07)',
+    }}>
+      <Marquee
+        delay={300}
+        baseVelocity={0.6}
+        scrollDependent={true}
+        clasname="font-black tracking-[-0.04em] leading-none uppercase text-[#14271C] text-[clamp(40px,5.5vw,88px)] select-none"
+      >
+        THE LOYALTY PLATFORM FOR LOCAL BUSINESSES &nbsp;·&nbsp; BUILT FOR CAFÉS · SALONS · BARBERS · DENTISTS · GYMS &nbsp;·&nbsp;
+      </Marquee>
+    </section>
   )
 }

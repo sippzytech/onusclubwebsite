@@ -1,18 +1,18 @@
 import type { Metadata } from 'next'
-import { Fraunces, Inter } from 'next/font/google'
+import { Lato, Fraunces } from 'next/font/google'
 import './globals.css'
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+  variable: '--font-lato',
+  display: 'swap',
+})
 
 const fraunces = Fraunces({
   subsets: ['latin'],
   weight: ['400', '600'],
   variable: '--font-fraunces',
-  display: 'swap',
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-inter-var',
   display: 'swap',
 })
 
@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang="en" className={`${lato.variable} ${fraunces.variable}`}>
       <body suppressHydrationWarning>{children}</body>
     </html>
   )

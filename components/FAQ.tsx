@@ -4,7 +4,6 @@ import { useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Plus, Minus } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
@@ -26,7 +25,7 @@ const FAQS = [
   },
   {
     q: 'How do I add stamps at the counter?',
-    a: 'Your staff open the OnUsClub dashboard on any phone, tablet, or computer and scan the barcode on the customer\'s wallet card. One tap adds the stamp and the card updates on the customer\'s phone instantly.',
+    a: 'Your staff open the OnUsClub dashboard on any phone, tablet, or computer and scan the barcode on the customer\'s wallet card. One tap adds the stamp and the card updates instantly.',
   },
   {
     q: 'What happens after the 3-month intro period?',
@@ -34,7 +33,7 @@ const FAQS = [
   },
   {
     q: 'Can I cancel at any time?',
-    a: 'Yes. Monthly plans can be cancelled at any time with no penalty. Yearly plans are billed annually. If you cancel mid-year we don\'t offer refunds, but you keep access until the end of your billing period.',
+    a: 'Yes. Monthly plans can be cancelled at any time with no penalty. Yearly plans are billed annually — if you cancel mid-year you keep access until the end of your billing period.',
   },
   {
     q: 'Can I use OnUsClub across multiple locations?',
@@ -42,70 +41,83 @@ const FAQS = [
   },
   {
     q: 'Who owns my customer data?',
-    a: 'You do, always. Every customer who joins your loyalty program is yours, not ours. You can export your full customer list at any time. We never sell or share your data with third parties.',
+    a: 'You do, always. Every customer who joins your loyalty program is yours. You can export your full customer list at any time. We never sell or share your data with third parties.',
   },
 ]
 
 export default function FAQ() {
-  const containerRef = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement>(null)
   const [open, setOpen] = useState<number | null>(null)
 
-  useGSAP(
-    () => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  useGSAP(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: containerRef.current, start: 'top 78%', once: true },
-        defaults: { ease: 'power3.out' },
-      })
-
-      tl.from('.faq-eyebrow', { opacity: 0, y: 8, duration: 0.4 })
-        .from('.rev-word',    { yPercent: 110, duration: 0.65, stagger: 0.05 }, '-=0.15')
-        .from('.faq-item',   { opacity: 0, y: 20, duration: 0.5, stagger: 0.07 }, '-=0.3')
-    },
-    { scope: containerRef },
-  )
+    gsap.timeline({
+      scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true },
+      defaults: { ease: 'power3.out' },
+    })
+      .from('.faq-eyebrow', { opacity: 0, y: 10, duration: 0.45 })
+      .from('.faq-word',    { yPercent: 115, duration: 0.7, stagger: 0.055 }, '-=0.2')
+      .from('.faq-lead',   { opacity: 0, y: 14, duration: 0.5 }, '-=0.3')
+      .from('.faq-item',   { opacity: 0, y: 20, duration: 0.55, stagger: 0.07 }, '-=0.25')
+  }, { scope: ref })
 
   return (
     <section
-      ref={containerRef}
+      ref={ref}
       id="faq"
-      style={{ padding: '100px 0', background: 'var(--color-bone-white)', borderTop: '1px solid var(--color-cloud)' }}
+      style={{ background: '#F4F1E9', padding: '100px 6vw' }}
     >
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-        <div className="faq-grid">
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
-          {/* Left: heading */}
-          <div style={{ position: 'sticky', top: 120, alignSelf: 'start' }}>
-            <Eyebrow className="faq-eyebrow">FAQ</Eyebrow>
-            <h2
-              className="font-serif"
-              style={{
-                fontSize: 'clamp(28px, 3.5vw, 44px)',
-                lineHeight: 1.12,
-                letterSpacing: '-0.02em',
-                color: 'var(--color-deep-coal)',
-                marginTop: 14,
-                fontWeight: 400,
-              }}
-            >
-              {H2_WORDS.map((word, i) => (
-                <span
-                  key={i}
-                  className="word-clip"
-                  style={i < H2_WORDS.length - 1 ? { marginRight: '0.28em' } : undefined}
-                >
-                  <span className="rev-word">{word}</span>
-                </span>
-              ))}
-            </h2>
-            <p style={{ marginTop: 18, fontSize: 15, color: 'var(--color-stone)', lineHeight: 1.6, maxWidth: 320 }}>
-              Still have questions? <a href="#demo" style={{ color: '#B0894F', textDecoration: 'none', fontWeight: 500 }}>Send us a message →</a>
-            </p>
-          </div>
+        {/* ── Header ──────────────────────────────────────────────── */}
+        <div style={{ textAlign: 'center', marginBottom: 72 }}>
+          <p className="faq-eyebrow" style={{
+            fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+            fontSize: 11, fontWeight: 700, letterSpacing: '0.16em',
+            textTransform: 'uppercase', color: '#B0894F', marginBottom: 20,
+          }}>
+            FAQ
+          </p>
 
-          {/* Right: accordion */}
-          <div>
+          <h2 style={{
+            fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+            fontSize: 'clamp(32px, 4.5vw, 60px)',
+            fontWeight: 900, letterSpacing: '-0.03em',
+            lineHeight: 1.05, textTransform: 'uppercase',
+            color: '#14271C', margin: '0 auto 20px',
+          }}>
+            {H2_WORDS.map((word, i) => (
+              <span key={i} style={{
+                display: 'inline-block', overflow: 'hidden',
+                verticalAlign: 'bottom', paddingBottom: '0.06em',
+                marginBottom: '-0.04em',
+                marginRight: i < H2_WORDS.length - 1 ? '0.28em' : 0,
+              }}>
+                <span className="faq-word" style={{ display: 'inline-block' }}>{word}</span>
+              </span>
+            ))}
+          </h2>
+
+          <p className="faq-lead" style={{
+            fontSize: 15, color: '#6e7860',
+            lineHeight: 1.75, marginBottom: 16,
+          }}>
+            Still have questions?
+          </p>
+
+          <a href="#demo" style={{
+            fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+            fontSize: 13, fontWeight: 700, letterSpacing: '0.08em',
+            color: '#B0894F', textDecoration: 'none',
+            textTransform: 'uppercase',
+          }}>
+            Talk to us →
+          </a>
+        </div>
+
+        {/* ── Accordion ───────────────────────────────────────────── */}
+        <div style={{ maxWidth: 760, margin: '0 auto' }}>
             {FAQS.map((faq, i) => {
               const isOpen = open === i
               return (
@@ -113,7 +125,10 @@ export default function FAQ() {
                   key={i}
                   className="faq-item"
                   style={{
-                    borderBottom: '1px solid var(--color-cloud)',
+                    borderBottom: '1px solid rgba(20,39,28,0.1)',
+                    borderLeft: isOpen ? '2px solid #B0894F' : '2px solid transparent',
+                    paddingLeft: isOpen ? 20 : 0,
+                    transition: 'border-color 0.25s ease, padding-left 0.25s ease',
                   }}
                 >
                   <button
@@ -123,61 +138,44 @@ export default function FAQ() {
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
-                      gap: 16,
-                      padding: '22px 0',
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer',
-                      textAlign: 'left',
+                      gap: 20,
+                      padding: '24px 0',
+                      background: 'none', border: 'none',
+                      cursor: 'pointer', textAlign: 'left',
                     }}
                   >
-                    <span
-                      style={{
-                        fontSize: 16,
-                        fontWeight: 500,
-                        color: isOpen ? '#B0894F' : 'var(--color-deep-coal)',
-                        lineHeight: 1.4,
-                        transition: 'color 0.2s ease',
-                      }}
-                    >
+                    <span style={{
+                      fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+                      fontSize: 15, fontWeight: isOpen ? 700 : 500,
+                      color: isOpen ? '#14271C' : '#6e7860',
+                      lineHeight: 1.45,
+                      transition: 'color 0.2s ease, font-weight 0.2s ease',
+                    }}>
                       {faq.q}
                     </span>
-                    <span
-                      style={{
-                        flexShrink: 0,
-                        width: 28,
-                        height: 28,
-                        borderRadius: '50%',
-                        background: isOpen ? '#B0894F' : 'var(--color-cloud)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        transition: 'background 0.2s ease',
-                      }}
-                    >
+
+                    <span style={{
+                      flexShrink: 0, width: 30, height: 30,
+                      border: `1px solid ${isOpen ? '#B0894F' : 'rgba(20,39,28,0.15)'}`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      transition: 'border-color 0.2s ease',
+                    }}>
                       {isOpen
-                        ? <Minus size={14} color="#F4F1E9" />
-                        : <Plus size={14} color="var(--color-stone)" />
+                        ? <Minus size={13} color="#B0894F" />
+                        : <Plus size={13} color="rgba(20,39,28,0.4)" />
                       }
                     </span>
                   </button>
 
-                  <div
-                    style={{
-                      maxHeight: isOpen ? 400 : 0,
-                      overflow: 'hidden',
-                      transition: 'max-height 0.35s ease',
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontSize: 15,
-                        color: 'var(--color-stone)',
-                        lineHeight: 1.72,
-                        paddingBottom: 22,
-                        maxWidth: 560,
-                      }}
-                    >
+                  <div style={{
+                    maxHeight: isOpen ? 400 : 0,
+                    overflow: 'hidden',
+                    transition: 'max-height 0.35s ease',
+                  }}>
+                    <p style={{
+                      fontSize: 14, color: '#6e7860',
+                      lineHeight: 1.8, paddingBottom: 24, maxWidth: 520,
+                    }}>
                       {faq.a}
                     </p>
                   </div>
@@ -186,24 +184,8 @@ export default function FAQ() {
             })}
           </div>
 
-        </div>
       </div>
 
-      <style>{`
-        .faq-grid {
-          display: grid;
-          grid-template-columns: 0.9fr 1.1fr;
-          gap: 80px;
-          align-items: start;
-        }
-        @media (max-width: 820px) {
-          .faq-grid {
-            grid-template-columns: 1fr;
-            gap: 40px;
-          }
-          .faq-grid > div:first-child { position: static !important; }
-        }
-      `}</style>
     </section>
   )
 }

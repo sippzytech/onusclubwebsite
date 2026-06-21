@@ -5,18 +5,10 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import {
-  SmartphoneNfc,
-  CreditCard,
-  FolderOpen,
-  Bell,
-  ScanLine,
-  BarChart3,
-  Gift,
-  MapPin,
-  Palette,
+  SmartphoneNfc, CreditCard, FolderOpen, Bell,
+  ScanLine, BarChart3, Gift, MapPin, Palette,
 } from 'lucide-react'
 import { FEATURES } from '@/lib/content'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -24,138 +16,155 @@ const ICONS = [SmartphoneNfc, CreditCard, FolderOpen, Bell, ScanLine, BarChart3,
 const H2_WORDS = 'Loyalty that does the heavy lifting.'.split(' ')
 
 export default function Features() {
-  const containerRef = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement>(null)
 
-  useGSAP(
-    () => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  useGSAP(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: containerRef.current, start: 'top 78%', once: true },
-        defaults: { ease: 'power3.out' },
-      })
+    gsap.timeline({
+      scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true },
+      defaults: { ease: 'power3.out' },
+    })
+      .from('.feat-eyebrow', { opacity: 0, y: 10, duration: 0.45 })
+      .from('.feat-word',    { yPercent: 115, duration: 0.7, stagger: 0.055 }, '-=0.2')
+      .from('.feat-lead',   { opacity: 0, y: 14, duration: 0.5 }, '-=0.3')
 
-      tl.from('.feat-eyebrow', { opacity: 0, y: 8, duration: 0.4 })
-        .from('.rev-word', { yPercent: 110, duration: 0.6, stagger: 0.05 }, '-=0.15')
-        .from('.feat-cell', { y: 36, scale: 0.97, opacity: 0, duration: 0.7, stagger: 0.07 }, '-=0.2')
-        .from('.feat-icon', {
-          scale: 0.25, opacity: 0, rotation: -20,
-          duration: 0.48, stagger: 0.07, ease: 'back.out(2)',
-        }, '-=0.55')
-    },
-    { scope: containerRef }
-  )
+    gsap.from('.feat-card', {
+      opacity: 0, y: 40, duration: 0.65,
+      stagger: { amount: 0.6, from: 'start' },
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '.feat-grid', start: 'top 84%', once: true },
+    })
+
+    gsap.from('.feat-icon-wrap', {
+      scale: 0, duration: 0.45,
+      stagger: { amount: 0.6, from: 'start' },
+      ease: 'back.out(2.5)',
+      scrollTrigger: { trigger: '.feat-grid', start: 'top 84%', once: true },
+    })
+  }, { scope: ref })
 
   return (
     <section
-      ref={containerRef}
+      ref={ref}
       id="features"
-      style={{ padding: '96px 0', background: 'var(--color-deep-coal)' }}
+      style={{ background: '#F4F1E9', padding: '100px 6vw' }}
     >
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-        {/* Head */}
-        <div style={{ maxWidth: 640, marginBottom: 56 }}>
-          <Eyebrow className="feat-eyebrow" style={{ color: 'rgba(244,241,233,0.5)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+
+        {/* ── Header ────────────────────────────────────────────── */}
+        <div style={{ textAlign: 'center', marginBottom: 72 }}>
+          <p className="feat-eyebrow" style={{
+            fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+            fontSize: 11, fontWeight: 700, letterSpacing: '0.16em',
+            textTransform: 'uppercase', color: '#B0894F', marginBottom: 20,
+          }}>
             Why OnUsClub
-          </Eyebrow>
-          <h2
-            className="font-serif"
-            style={{
-              fontSize: 'clamp(30px, 4vw, 48px)',
-              lineHeight: 1.12,
-              letterSpacing: '-0.018em',
-              color: 'var(--color-bone-white)',
-              marginTop: 14,
-              fontWeight: 400,
-            }}
-          >
+          </p>
+
+          <h2 style={{
+            fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+            fontSize: 'clamp(32px, 4.5vw, 60px)',
+            fontWeight: 900, letterSpacing: '-0.03em',
+            lineHeight: 1.05, textTransform: 'uppercase',
+            color: '#14271C', margin: '0 auto 20px',
+          }}>
             {H2_WORDS.map((word, i) => (
-              <span
-                key={i}
-                className="word-clip"
-                style={i < H2_WORDS.length - 1 ? { marginRight: '0.28em' } : undefined}
-              >
-                <span className="rev-word">{word}</span>
+              <span key={i} style={{
+                display: 'inline-block', overflow: 'hidden',
+                verticalAlign: 'bottom', paddingBottom: '0.06em',
+                marginBottom: '-0.04em',
+                marginRight: i < H2_WORDS.length - 1 ? '0.28em' : 0,
+              }}>
+                <span className="feat-word" style={{ display: 'inline-block' }}>{word}</span>
               </span>
             ))}
           </h2>
+
+          <p className="feat-lead" style={{
+            fontSize: 15, lineHeight: 1.75,
+            color: '#6e7860', maxWidth: 440, margin: '0 auto',
+          }}>
+            Everything you need to turn first-time visitors into loyal regulars — without the complexity.
+          </p>
         </div>
 
-        {/* Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 0,
-            border: '1px solid rgba(244,241,233,0.1)',
-            borderRadius: 18,
-            overflow: 'hidden',
-          }}
-        >
+        {/* ── Grid ──────────────────────────────────────────────── */}
+        <div className="feat-grid">
           {FEATURES.map((feat, i) => {
             const Icon = ICONS[i]
-            const cols = 3
-            const remainder = FEATURES.length % cols || cols
-            const lastRowStart = FEATURES.length - remainder
-            const isLastInRow = (i + 1) % cols === 0
-            const isInLastRow = i >= lastRowStart
-
             return (
               <div
                 key={feat.h}
-                className="feat-cell"
+                className="feat-card"
+                onMouseEnter={e => {
+                  gsap.to(e.currentTarget, { y: -6, boxShadow: '0 20px 48px rgba(20,39,28,0.1)', duration: 0.3, ease: 'power2.out' })
+                }}
+                onMouseLeave={e => {
+                  gsap.to(e.currentTarget, { y: 0, boxShadow: '0 1px 0px rgba(20,39,28,0.0)', duration: 0.3, ease: 'power2.out' })
+                }}
                 style={{
-                  padding: '36px 30px',
-                  borderRight: isLastInRow ? 'none' : '1px solid rgba(244,241,233,0.1)',
-                  borderBottom: isInLastRow ? 'none' : '1px solid rgba(244,241,233,0.1)',
-                  transition: 'background 0.15s ease',
-                }}
-                onMouseMove={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect()
-                  const x = e.clientX - rect.left
-                  const y = e.clientY - rect.top
-                  e.currentTarget.style.background = `radial-gradient(280px circle at ${x}px ${y}px, rgba(176,137,79,0.13) 0%, transparent 65%)`
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = ''
+                  background: 'transparent',
+                  borderRadius: 20,
+                  border: '1px solid rgba(20,39,28,0.18)',
+                  padding: 'clamp(24px, 3vw, 36px)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 16,
+                  cursor: 'default',
                 }}
               >
-                <Icon
-                  size={28}
-                  strokeWidth={1.5}
-                  className="feat-icon"
-                  style={{ color: 'var(--color-bone-white)', marginBottom: 20, display: 'block' }}
-                />
-                <h3
-                  className="font-serif"
+                {/* Icon circle */}
+                <div
+                  className="feat-icon-wrap"
                   style={{
-                    fontSize: 'clamp(18px, 2vw, 22px)',
-                    lineHeight: 1.2,
-                    letterSpacing: '-0.015em',
-                    marginBottom: 10,
-                    fontWeight: 400,
-                    color: 'var(--color-bone-white)',
+                    width: 52, height: 52, borderRadius: '50%',
+                    background: '#14271C',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0,
                   }}
                 >
+                  <Icon size={22} strokeWidth={1.5} color="#B0894F" />
+                </div>
+
+                {/* Title */}
+                <h3 style={{
+                  fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+                  fontSize: 'clamp(16px, 1.4vw, 19px)',
+                  fontWeight: 800,
+                  letterSpacing: '-0.01em',
+                  color: '#14271C',
+                  lineHeight: 1.25,
+                  margin: 0,
+                }}>
                   {feat.h}
                 </h3>
-                <p style={{ fontSize: 14.5, color: 'rgba(244,241,233,0.62)', lineHeight: 1.6 }}>
+
+                {/* Body */}
+                <p style={{
+                  fontSize: 14, color: '#6e7860',
+                  lineHeight: 1.7, margin: 0,
+                }}>
                   {feat.p}
                 </p>
               </div>
             )
           })}
         </div>
+
       </div>
 
       <style>{`
-        @media (max-width: 820px) {
-          #features > div > div:last-child { grid-template-columns: 1fr !important; }
-          .feat-cell {
-            border-right: none !important;
-            border-bottom: 1px solid rgba(244,241,233,0.1) !important;
-          }
-          .feat-cell:last-child { border-bottom: none !important; }
+        .feat-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+        @media (max-width: 860px) {
+          .feat-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 540px) {
+          .feat-grid { grid-template-columns: 1fr; }
         }
       `}</style>
     </section>

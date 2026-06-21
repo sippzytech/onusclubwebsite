@@ -22,7 +22,7 @@
   --color-accent: #B0894F;
 
   --font-serif: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
-  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-lato: 'Lato', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   --radius-card: 16px;
   --radius-pill: 999px;
@@ -30,6 +30,22 @@
 
   --shadow-lg: rgba(20,39,28,0.09) 0px 1px 20px 3px;
   --shadow-xl: rgba(20,39,28,0.2) 0px 20px 60px 0px, rgba(20,39,28,0.09) 0px 4px 16px 0px;
+}
+
+/* Unlayered — wins over everything in @layer base, prevents dark canvas bleed */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #F4F1E9; /* --color-bone-white, hard-coded so it applies before custom props resolve */
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
 }
 
 :root {
@@ -64,7 +80,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: var(--font-inter-var), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
     background: var(--color-bone-white);
     color: var(--color-obsidian);
     -webkit-font-smoothing: antialiased;
@@ -74,4 +90,33 @@
   .font-serif {
     font-family: var(--font-fraunces), ui-serif, Georgia, serif;
   }
+}
+
+/* ── Global mobile fixes ─────────────────────────────────────── */
+@media (max-width: 700px) {
+  /* Tighter section padding on small screens */
+  section, div[id] {
+    padding-left: max(16px, 4vw) !important;
+    padding-right: max(16px, 4vw) !important;
+  }
+
+  /* Prevent horizontal scroll from large SVGs / canvases */
+  .how-step-grid,
+  .rev-grid,
+  .feat-grid,
+  .pr-grid,
+  .fs-grid,
+  .cta-grid,
+  .roi-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Nav logo size */
+  nav img { width: 38px !important; height: 38px !important; }
+
+  /* FlowArt sections — disable overflow on mobile */
+  [data-flow-section] { overflow: hidden; }
+
+  /* Hero font scale */
+  .hero-h1 { font-size: clamp(36px, 11vw, 56px) !important; }
 }

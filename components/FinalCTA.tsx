@@ -4,7 +4,6 @@ import { useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -27,74 +26,98 @@ const TRUST = [
 ]
 
 type Fields = {
-  name: string
-  business: string
-  email: string
-  phone: string
-  type: string
-  message: string
+  name: string; business: string; email: string
+  phone: string; type: string; message: string
 }
 
 const EMPTY: Fields = { name: '', business: '', email: '', phone: '', type: '', message: '' }
 
 function SuccessState() {
   return (
-    <div style={{ textAlign: 'center', padding: '32px 0' }}>
-      <div
-        style={{
-          width: 56, height: 56, borderRadius: '50%',
-          background: 'rgba(176,137,79,0.12)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          margin: '0 auto 24px',
-        }}
-      >
-        <svg width="24" height="20" viewBox="0 0 24 20" fill="none">
-          <path d="M2 10l6.5 6.5L22 2" stroke="#B0894F" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    <div style={{ textAlign: 'center', padding: '40px 0' }}>
+      <div style={{
+        width: 52, height: 52,
+        border: '1px solid #B0894F',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        margin: '0 auto 24px',
+      }}>
+        <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
+          <path d="M1.5 8l5.5 5.5L18.5 1.5" stroke="#B0894F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
-      <h3
-        className="font-serif"
-        style={{ fontSize: 26, fontWeight: 400, letterSpacing: '-0.015em', color: 'var(--color-deep-coal)', marginBottom: 12 }}
-      >
+      <h3 style={{
+        fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+        fontSize: 22, fontWeight: 900, letterSpacing: '-0.02em',
+        textTransform: 'uppercase', color: '#14271C', marginBottom: 12,
+      }}>
         Request received.
       </h3>
-      <p style={{ fontSize: 15, color: 'var(--color-stone)', lineHeight: 1.6, maxWidth: 320, margin: '0 auto' }}>
-        We&apos;ll be in touch within one business day to book your demo slot.
+      <p style={{ fontSize: 14, color: '#6e7860', lineHeight: 1.7, maxWidth: 300, margin: '0 auto' }}>
+        We'll be in touch within one business day to book your demo slot.
       </p>
     </div>
   )
 }
 
+function inputStyle(hasError: boolean): React.CSSProperties {
+  return {
+    width: '100%', padding: '12px 14px',
+    border: `1px solid ${hasError ? '#c0392b' : 'rgba(20,39,28,0.15)'}`,
+    borderRadius: 0, fontSize: 14,
+    color: '#14271C', background: 'transparent',
+    fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+    boxSizing: 'border-box',
+    transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
+  }
+}
+
+function Field({ label, hint, error, children }: {
+  label: string; hint?: string; error?: string; children: React.ReactNode
+}) {
+  return (
+    <div style={{ marginBottom: 20 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 7 }}>
+        <label style={{
+          fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+          fontSize: 11, fontWeight: 700, letterSpacing: '0.1em',
+          textTransform: 'uppercase', color: '#14271C',
+        }}>
+          {label}
+        </label>
+        {hint && !error && <span style={{ fontSize: 11, color: '#6e7860' }}>{hint}</span>}
+        {error && <span style={{ fontSize: 11, color: '#c0392b' }}>{error}</span>}
+      </div>
+      {children}
+    </div>
+  )
+}
+
 export default function FinalCTA() {
-  const containerRef = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement>(null)
   const [form, setForm] = useState<Fields>(EMPTY)
   const [errors, setErrors] = useState<Partial<Fields>>({})
   const [submitted, setSubmitted] = useState(false)
 
-  useGSAP(
-    () => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  useGSAP(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: containerRef.current, start: 'top 78%', once: true },
-        defaults: { ease: 'power3.out' },
-      })
-
-      tl.from('.demo-eyebrow', { opacity: 0, y: 8, duration: 0.4 })
-        .from('.rev-word',     { yPercent: 110, duration: 0.65, stagger: 0.05 }, '-=0.15')
-        .from('.demo-body',    { opacity: 0, y: 14, duration: 0.55 }, '-=0.3')
-        .from('.demo-trust li', { opacity: 0, x: -14, duration: 0.4, stagger: 0.1 }, '-=0.25')
-        .from('.demo-form-card', { opacity: 0, x: 36, duration: 0.75 }, '-=0.6')
-    },
-    { scope: containerRef },
-  )
+    gsap.timeline({
+      scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true },
+      defaults: { ease: 'power3.out' },
+    })
+      .from('.cta-eyebrow',  { opacity: 0, y: 10, duration: 0.45 })
+      .from('.cta-word',     { yPercent: 115, duration: 0.7, stagger: 0.055 }, '-=0.2')
+      .from('.cta-lead',    { opacity: 0, y: 14, duration: 0.5 }, '-=0.3')
+      .from('.cta-trust li', { opacity: 0, x: -12, duration: 0.4, stagger: 0.1 }, '-=0.25')
+      .from('.cta-form',    { opacity: 0, x: 40, duration: 0.75 }, '-=0.55')
+  }, { scope: ref })
 
   function validate() {
     const e: Partial<Fields> = {}
     if (!form.name.trim()) e.name = 'Required'
     if (!form.business.trim()) e.business = 'Required'
     if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) e.email = 'Valid email required'
-    if (!form.type) e.type = 'Please select a type'
+    if (!form.type) e.type = 'Select a type'
     return e
   }
 
@@ -113,196 +136,115 @@ export default function FinalCTA() {
   }
 
   return (
-    <section
-      ref={containerRef}
-      id="demo"
-      style={{ padding: '100px 0', background: 'var(--color-deep-coal)' }}
-    >
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-        <div className="demo-grid">
+    <section ref={ref} id="demo" style={{ background: '#0d1c13', padding: '100px 6vw' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div className="cta-grid">
 
-          {/* ── Left copy ─────────────────────────────────────────────── */}
+          {/* ── Left copy ─────────────────────────────────────────── */}
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <Eyebrow className="demo-eyebrow" style={{ color: 'rgba(244,241,233,0.5)' }}>
+            <p className="cta-eyebrow" style={{
+              fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+              fontSize: 11, fontWeight: 700, letterSpacing: '0.16em',
+              textTransform: 'uppercase', color: '#B0894F', marginBottom: 20,
+            }}>
               Book a demo
-            </Eyebrow>
+            </p>
 
-            <h2
-              className="font-serif"
-              style={{
-                fontSize: 'clamp(32px, 4.5vw, 56px)',
-                lineHeight: 1.08,
-                letterSpacing: '-0.022em',
-                color: 'var(--color-bone-white)',
-                marginTop: 16,
-                fontWeight: 400,
-              }}
-            >
+            <h2 style={{
+              fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+              fontSize: 'clamp(32px, 4.5vw, 60px)',
+              fontWeight: 900, letterSpacing: '-0.03em',
+              lineHeight: 1.05, textTransform: 'uppercase',
+              color: '#F4F1E9', marginBottom: 20,
+            }}>
               {H2_WORDS.map((word, i) => (
-                <span
-                  key={i}
-                  className="word-clip"
-                  style={i < H2_WORDS.length - 1 ? { marginRight: '0.28em' } : undefined}
-                >
-                  <span className="rev-word">{word}</span>
+                <span key={i} style={{
+                  display: 'inline-block', overflow: 'hidden',
+                  verticalAlign: 'bottom', paddingBottom: '0.06em',
+                  marginBottom: '-0.04em',
+                  marginRight: i < H2_WORDS.length - 1 ? '0.28em' : 0,
+                }}>
+                  <span className="cta-word" style={{ display: 'inline-block' }}>{word}</span>
                 </span>
               ))}
             </h2>
 
-            <p
-              className="demo-body"
-              style={{
-                fontSize: 16,
-                lineHeight: 1.72,
-                color: 'rgba(244,241,233,0.65)',
-                marginTop: 20,
-                maxWidth: 400,
-              }}
-            >
-              We&apos;ll set up a live wallet loyalty card for your business so you see exactly what your customers will. No obligation, no hard sell.
+            <p className="cta-lead" style={{
+              fontSize: 15, lineHeight: 1.75,
+              color: 'rgba(244,241,233,0.5)', maxWidth: 400, marginBottom: 40,
+            }}>
+              We'll set up a live wallet loyalty card for your business so you see exactly what your customers will. No obligation, no hard sell.
             </p>
 
-            <ul className="demo-trust" style={{ listStyle: 'none', padding: 0, margin: '36px 0 0' }}>
+            <ul className="cta-trust" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {TRUST.map(t => (
-                <li
-                  key={t}
-                  style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}
-                >
-                  <span
-                    style={{
-                      width: 22, height: 22, borderRadius: '50%',
-                      background: 'rgba(176,137,79,0.2)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      flexShrink: 0,
-                    }}
-                  >
-                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                      <path d="M1 4l2.5 2.5L9 1" stroke="#B0894F" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                <li key={t} style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
+                  <span style={{
+                    width: 20, height: 20, flexShrink: 0,
+                    border: '1px solid #B0894F',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
+                      <path d="M1 3.5l2.2 2.2L8 1" stroke="#B0894F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </span>
-                  <span style={{ fontSize: 15, color: 'rgba(244,241,233,0.68)' }}>{t}</span>
+                  <span style={{ fontSize: 14, color: 'rgba(244,241,233,0.55)' }}>{t}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* ── Right form ────────────────────────────────────────────── */}
-          <div
-            className="demo-form-card"
-            style={{
-              background: 'var(--color-bone-white)',
-              borderRadius: 20,
-              padding: '40px 36px',
-              boxShadow: '0 32px 80px rgba(0,0,0,0.28)',
-            }}
-          >
+          {/* ── Right form ────────────────────────────────────────── */}
+          <div className="cta-form" style={{
+            background: '#F4F1E9',
+            padding: 'clamp(28px, 4vw, 48px)',
+          }}>
             {submitted ? <SuccessState /> : (
               <form onSubmit={handleSubmit} noValidate>
-                <p
-                  className="font-serif"
-                  style={{ fontSize: 22, fontWeight: 400, letterSpacing: '-0.015em', color: 'var(--color-deep-coal)', marginBottom: 28 }}
-                >
+                <p style={{
+                  fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+                  fontSize: 11, fontWeight: 700, letterSpacing: '0.16em',
+                  textTransform: 'uppercase', color: '#B0894F', marginBottom: 28,
+                }}>
                   Request a demo
                 </p>
 
-                {/* Row: name + business */}
-                <div className="demo-row">
+                <div className="cta-row">
                   <Field label="Your name" error={errors.name}>
-                    <input
-                      className="demo-input"
-                      type="text"
-                      placeholder="Jane Smith"
-                      value={form.name}
-                      onChange={set('name')}
-                      style={inputStyle(!!errors.name)}
-                    />
+                    <input type="text" placeholder="Jane Smith" value={form.name} onChange={set('name')} style={inputStyle(!!errors.name)} className="cta-input" />
                   </Field>
                   <Field label="Business name" error={errors.business}>
-                    <input
-                      className="demo-input"
-                      type="text"
-                      placeholder="Café Bloom"
-                      value={form.business}
-                      onChange={set('business')}
-                      style={inputStyle(!!errors.business)}
-                    />
+                    <input type="text" placeholder="Café Bloom" value={form.business} onChange={set('business')} style={inputStyle(!!errors.business)} className="cta-input" />
                   </Field>
                 </div>
 
-                {/* Row: email + phone */}
-                <div className="demo-row">
+                <div className="cta-row">
                   <Field label="Email address" error={errors.email}>
-                    <input
-                      className="demo-input"
-                      type="email"
-                      placeholder="jane@cafbloom.nl"
-                      value={form.email}
-                      onChange={set('email')}
-                      style={inputStyle(!!errors.email)}
-                    />
+                    <input type="email" placeholder="jane@cafebloom.nl" value={form.email} onChange={set('email')} style={inputStyle(!!errors.email)} className="cta-input" />
                   </Field>
-                  <Field label="Phone number" hint="Optional">
-                    <input
-                      className="demo-input"
-                      type="tel"
-                      placeholder="+31 6 12345678"
-                      value={form.phone}
-                      onChange={set('phone')}
-                      style={inputStyle(false)}
-                    />
+                  <Field label="Phone" hint="Optional">
+                    <input type="tel" placeholder="+31 6 12345678" value={form.phone} onChange={set('phone')} style={inputStyle(false)} className="cta-input" />
                   </Field>
                 </div>
 
-                {/* Business type */}
                 <Field label="Type of business" error={errors.type}>
-                  <select
-                    className="demo-input"
-                    value={form.type}
-                    onChange={set('type')}
-                    style={{ ...inputStyle(!!errors.type), color: form.type ? 'var(--color-deep-coal)' : 'var(--color-fog)' }}
-                  >
+                  <select value={form.type} onChange={set('type')} className="cta-input"
+                    style={{ ...inputStyle(!!errors.type), color: form.type ? '#14271C' : '#6e7860' }}>
                     <option value="" disabled>Select your business type</option>
-                    {BUSINESS_TYPES.map(t => (
-                      <option key={t} value={t}>{t}</option>
-                    ))}
+                    {BUSINESS_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </Field>
 
-                {/* Message */}
-                <Field label="Anything you'd like us to know?" hint="Optional">
-                  <textarea
-                    className="demo-input"
-                    rows={3}
-                    placeholder="Number of locations, questions, special requests…"
-                    value={form.message}
-                    onChange={set('message')}
-                    style={{ ...inputStyle(false), resize: 'vertical', minHeight: 80 }}
-                  />
+                <Field label="Anything to know?" hint="Optional">
+                  <textarea rows={3} placeholder="Number of locations, questions…" value={form.message} onChange={set('message')}
+                    className="cta-input" style={{ ...inputStyle(false), resize: 'vertical', minHeight: 80 }} />
                 </Field>
 
-                <button
-                  type="submit"
-                  style={{
-                    width: '100%',
-                    marginTop: 8,
-                    padding: '14px 24px',
-                    background: 'var(--color-deep-coal)',
-                    color: 'var(--color-bone-white)',
-                    border: 'none',
-                    borderRadius: 10,
-                    fontSize: 15,
-                    fontWeight: 600,
-                    letterSpacing: '0.01em',
-                    cursor: 'pointer',
-                    transition: 'background 0.2s ease, transform 0.15s ease',
-                  }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = '#B0894F' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'var(--color-deep-coal)' }}
-                >
+                <button type="submit" className="cta-submit">
                   Book my demo →
                 </button>
 
-                <p style={{ fontSize: 12, color: 'var(--color-fog)', textAlign: 'center', marginTop: 14 }}>
+                <p style={{ fontSize: 12, color: '#6e7860', textAlign: 'center', marginTop: 14 }}>
                   We respond within one business day.
                 </p>
               </form>
@@ -313,71 +255,46 @@ export default function FinalCTA() {
       </div>
 
       <style>{`
-        .demo-grid {
+        .cta-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 80px;
+          gap: clamp(40px, 7vw, 100px);
           align-items: center;
         }
-        .demo-row {
+        .cta-row {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 16px;
         }
-        .demo-input:focus {
+        .cta-input:focus {
           outline: none;
           border-color: #B0894F !important;
-          box-shadow: 0 0 0 3px rgba(176,137,79,0.15);
+          box-shadow: 0 0 0 3px rgba(176,137,79,0.12);
         }
+        .cta-submit {
+          width: 100%;
+          margin-top: 8px;
+          padding: 14px 24px;
+          background: #14271C;
+          color: #F4F1E9;
+          border: none;
+          border-radius: 0;
+          font-family: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+        .cta-submit:hover { background: #B0894F; color: #14271C; }
         @media (max-width: 900px) {
-          .demo-grid { grid-template-columns: 1fr; gap: 48px; }
+          .cta-grid { grid-template-columns: 1fr; gap: 56px; }
         }
         @media (max-width: 560px) {
-          .demo-row { grid-template-columns: 1fr; }
-          .demo-form-card { padding: 28px 20px !important; }
+          .cta-row { grid-template-columns: 1fr; }
         }
       `}</style>
     </section>
-  )
-}
-
-function inputStyle(hasError: boolean): React.CSSProperties {
-  return {
-    width: '100%',
-    padding: '11px 14px',
-    border: `1px solid ${hasError ? '#c0392b' : 'var(--color-ash-gray)'}`,
-    borderRadius: 10,
-    fontSize: 14.5,
-    color: 'var(--color-deep-coal)',
-    background: '#fff',
-    fontFamily: 'inherit',
-    boxSizing: 'border-box',
-    transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
-  }
-}
-
-function Field({
-  label, hint, error, children,
-}: {
-  label: string
-  hint?: string
-  error?: string
-  children: React.ReactNode
-}) {
-  return (
-    <div style={{ marginBottom: 18 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
-        <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-deep-coal)', letterSpacing: '0.01em' }}>
-          {label}
-        </label>
-        {hint && !error && (
-          <span style={{ fontSize: 12, color: 'var(--color-fog)' }}>{hint}</span>
-        )}
-        {error && (
-          <span style={{ fontSize: 12, color: '#c0392b' }}>{error}</span>
-        )}
-      </div>
-      {children}
-    </div>
   )
 }

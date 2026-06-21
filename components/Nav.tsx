@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { NAV_LINKS } from '@/lib/content'
 import { Button } from '@/components/ui/Button'
 import { X, Menu } from 'lucide-react'
@@ -44,22 +45,15 @@ export default function Nav() {
           }}
         >
           {/* Logo */}
-          <Link
-            href="/"
-            style={{
-              fontFamily: "'Extenda', sans-serif",
-              fontSize: 34,
-              letterSpacing: '0.01em',
-              transform: 'scaleX(1.35)',
-              transformOrigin: 'left center',
-              display: 'inline-block',
-              color: scrolled ? 'var(--color-deep-coal)' : 'var(--color-bone-white)',
-              textDecoration: 'none',
-              transition: 'color 0.3s ease',
-              lineHeight: 1,
-            }}
-          >
-            OnUsClub
+          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center' }}>
+            <Image
+              src="/new_logo.png"
+              alt="OnUsClub"
+              width={48}
+              height={48}
+              style={{ width: 48, height: 48, objectFit: 'contain' }}
+              priority
+            />
           </Link>
 
           {/* Desktop nav links */}
@@ -105,15 +99,8 @@ export default function Nav() {
             className="nav-cta"
             style={{ display: 'flex', alignItems: 'center', gap: 12 }}
           >
-            <Button
-              variant={scrolled ? 'outline' : 'outline-dark'}
-              href="#"
-              className="nav-signin"
-            >
-              Sign in
-            </Button>
             <Button variant="fill" href="#demo">
-              Request demo
+              Book a demo
             </Button>
           </div>
 
@@ -164,12 +151,9 @@ export default function Nav() {
                 {link.label}
               </a>
             ))}
-            <div style={{ display: 'flex', gap: 12, marginTop: 20 }}>
-              <Button variant="outline" href="#">
-                Sign in
-              </Button>
+            <div style={{ marginTop: 20 }}>
               <Button variant="fill" href="#demo">
-                Request demo
+                Book a demo
               </Button>
             </div>
           </div>
@@ -178,7 +162,7 @@ export default function Nav() {
 
       <style>{`
         @media (max-width: 860px) {
-          .nav-links, .nav-cta, .nav-signin { display: none !important; }
+          .nav-links, .nav-cta { display: none !important; }
           .nav-hamburger { display: block !important; }
         }
       `}</style>

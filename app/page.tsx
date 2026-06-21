@@ -1,11 +1,12 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
+import MarqueeStrip from '@/components/MarqueeStrip'
+import CardGallery from '@/components/CardGallery'
 import HowItWorks from '@/components/HowItWorks'
-import StatsBar from '@/components/StatsBar'
 import Retention from '@/components/Retention'
 import Features from '@/components/Features'
-import InvertBlock from '@/components/InvertBlock'
 import Pricing from '@/components/Pricing'
+import Reviews from '@/components/Reviews'
 import FAQ from '@/components/FAQ'
 import FinalCTA from '@/components/FinalCTA'
 import Footer from '@/components/Footer'
@@ -16,11 +17,12 @@ export default function Home() {
       <Nav />
       <Hero />
       <HowItWorks />
-      <StatsBar />
       <Retention />
+      <MarqueeStrip />
+      <CardGallery />
       <Features />
-      <InvertBlock />
       <Pricing />
+      <Reviews />
       <FAQ />
       <FinalCTA />
       <Footer />

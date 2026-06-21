@@ -1,107 +1,170 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3)
+}
+
+function runCounter(el: Element, target: number, suffix: string, delay: number, duration = 1800) {
+  setTimeout(() => {
+    const start = performance.now()
+    const tick = (now: number) => {
+      const elapsed = now - start
+      const progress = Math.min(elapsed / duration, 1)
+      el.textContent = `${Math.round(easeOutCubic(progress) * target)}${suffix}`
+      if (progress < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }, delay)
+}
+
 const STATS = [
-  { pre: '<', num: 5, suffix: ' min', decimal: false, label: 'Setup time, no hardware needed' },
-  { pre: '', num: 0, suffix: ' apps', decimal: false, label: 'Nothing for your customers to download' },
-  { pre: '', num: 1, suffix: ' tap', decimal: false, label: 'To add the card to Apple or Google Wallet' },
-  { pre: '', num: 100, suffix: '%', decimal: false, label: 'Your customer data, always in your hands' },
+  {
+    num: 5, suffix: '×', integer: true,
+    label: 'More Google Reviews',
+    body: 'Automated review rewards get you 5× more Google reviews, boosting local SEO and building trust with new customers.',
+  },
+  {
+    num: 60, suffix: '%', integer: true,
+    label: 'More Visits',
+    body: 'Loyalty programs increase visit frequency, helping businesses maintain steadier customer flow and revenue.',
+  },
+  {
+    num: 3, suffix: '×', integer: true,
+    label: 'More Spend',
+    body: 'Customers enrolled in digital loyalty programs spend 2–3× more on average, with higher basket values and repeat purchases.',
+  },
+  {
+    num: 25, suffix: '%', integer: true,
+    label: 'Higher Retention',
+    body: 'Businesses with loyalty programs see retention rates improve by up to 25%, significantly increasing customer lifetime value.',
+  },
 ]
 
 export default function StatsBar() {
   const ref = useRef<HTMLDivElement>(null)
 
+  // Fade-in via GSAP
   useGSAP(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    gsap.from('.stat-block', {
-      opacity: 0,
-      y: 32,
-      duration: 0.75,
-      stagger: 0.12,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: ref.current, start: 'top 86%', once: true },
+    gsap.from('.sb-eyebrow', {
+      opacity: 0, y: 10, duration: 0.5, ease: 'power3.out',
+      scrollTrigger: { trigger: ref.current, start: 'top 84%', once: true },
     })
-
-    STATS.forEach((stat, i) => {
-      if (stat.num === 0) return
-      const el = ref.current?.querySelector(`.stat-val-${i}`) as HTMLElement | null
-      if (!el) return
-      const obj = { n: 0 }
-      gsap.to(obj, {
-        n: stat.num,
-        duration: 2.2,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: ref.current, start: 'top 86%', once: true },
-        onUpdate() {
-          const display = stat.decimal ? obj.n.toFixed(1) : Math.round(obj.n)
-          el.textContent = `${stat.pre}${display}${stat.suffix}`
-        },
-      })
+    gsap.from('.sb-col', {
+      opacity: 0, y: 32, duration: 0.75,
+      stagger: 0.11, ease: 'power3.out',
+      scrollTrigger: { trigger: ref.current, start: 'top 84%', once: true },
     })
   }, { scope: ref })
 
+  // Counters via IntersectionObserver — unaffected by pinned sections above
+  useEffect(() => {
+    if (!ref.current) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0].isIntersecting) return
+        observer.disconnect()
+        STATS.forEach((stat, i) => {
+          const el = ref.current?.querySelector(`.sb-num-${i}`)
+          if (!el) return
+          runCounter(el, stat.num, stat.suffix, i * 120)
+        })
+      },
+      { threshold: 0.35 },
+    )
+    observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div
-      ref={ref}
-      style={{
-        background: 'var(--color-bone-white)',
-        borderBottom: '1px solid var(--color-cloud)',
-        padding: '72px 24px',
-      }}
-    >
-      <div
+    <div ref={ref} style={{ background: '#14271C', padding: '80px 6vw 88px' }}>
+
+      {/* Eyebrow */}
+      <p
+        className="sb-eyebrow"
         style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '40px 24px',
+          fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+          fontSize: 11, fontWeight: 700, letterSpacing: '0.16em',
+          textTransform: 'uppercase', color: '#B0894F',
+          maxWidth: 1200, margin: '0 auto 56px',
         }}
-        className="stats-inner"
       >
+        The ROI of loyalty programs
+      </p>
+
+      {/* Grid */}
+      <div className="sb-grid" style={{ maxWidth: 1200, margin: '0 auto' }}>
         {STATS.map((stat, i) => (
           <div
             key={i}
-            className="stat-block"
-            style={{ textAlign: 'center' }}
+            className="sb-col"
+            style={{
+              paddingLeft: i === 0 ? 0 : 'clamp(24px, 3.5vw, 52px)',
+              borderLeft: i === 0 ? 'none' : '1px solid rgba(244,241,233,0.08)',
+              display: 'flex', flexDirection: 'column',
+            }}
           >
+            {/* Big number */}
             <div
-              className={`stat-val-${i} font-serif`}
+              className={`sb-num-${i} font-serif`}
               style={{
-                fontSize: 'clamp(44px, 5.5vw, 68px)',
-                fontWeight: 400,
-                lineHeight: 1,
+                fontSize: 'clamp(48px, 6vw, 80px)',
+                fontWeight: 400, lineHeight: 1,
                 letterSpacing: '-0.03em',
                 color: '#B0894F',
               }}
             >
-              {stat.pre}0{stat.suffix}
+              {stat.num}{stat.suffix}
             </div>
-            <div
-              style={{
-                fontSize: 13,
-                color: 'var(--color-stone)',
-                fontWeight: 500,
-                marginTop: 10,
-                letterSpacing: '0.01em',
-              }}
-            >
+
+            {/* Label */}
+            <p style={{
+              fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
+              fontSize: 14, fontWeight: 700,
+              letterSpacing: '0.01em',
+              color: '#F4F1E9',
+              margin: '16px 0 10px',
+            }}>
               {stat.label}
-            </div>
+            </p>
+
+            {/* Divider */}
+            <div style={{ width: 24, height: 1, background: 'rgba(244,241,233,0.2)', marginBottom: 14 }} />
+
+            {/* Body */}
+            <p style={{
+              fontSize: 13, fontWeight: 400,
+              lineHeight: 1.7, color: 'rgba(244,241,233,0.45)',
+              maxWidth: '28ch',
+            }}>
+              {stat.body}
+            </p>
           </div>
         ))}
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
-          .stats-inner { grid-template-columns: repeat(2, 1fr) !important; }
+        .sb-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+        }
+        @media (max-width: 900px) {
+          .sb-grid { grid-template-columns: repeat(2, 1fr); gap: 56px 0; }
+          .sb-col:nth-child(3) { border-left: none !important; padding-left: 0 !important; }
+        }
+        @media (max-width: 480px) {
+          .sb-grid { grid-template-columns: 1fr; gap: 0; }
+          .sb-col { border-left: none !important; padding-left: 0 !important; padding-top: 40px; border-top: 1px solid rgba(244,241,233,0.08); }
+          .sb-col:first-child { padding-top: 0; border-top: none; }
         }
       `}</style>
     </div>

@@ -1,0 +1,64 @@
+"use client"
+
+import React from "react"
+import { motion } from "motion/react"
+import { cn } from "@/lib/utils"
+
+const STAGGER = 0.04
+
+export default function TextRoll({
+  children,
+  className,
+  center = false,
+}: {
+  children: string
+  className?: string
+  center?: boolean
+}) {
+  return (
+    <motion.span
+      initial="initial"
+      whileHover="hovered"
+      className={cn("relative block overflow-hidden", className)}
+      style={{ lineHeight: 1 }}
+    >
+      {/* Top row — slides up on hover */}
+      <div>
+        {children.split("").map((l, i) => {
+          const delay = center
+            ? STAGGER * Math.abs(i - (children.length - 1) / 2)
+            : STAGGER * i
+          return (
+            <motion.span
+              key={i}
+              variants={{ initial: { y: 0 }, hovered: { y: "-100%" } }}
+              transition={{ ease: "easeInOut", delay, duration: 0.4 }}
+              className="inline-block"
+            >
+              {l === " " ? " " : l}
+            </motion.span>
+          )
+        })}
+      </div>
+
+      {/* Bottom row — slides in from below */}
+      <div className="absolute inset-0">
+        {children.split("").map((l, i) => {
+          const delay = center
+            ? STAGGER * Math.abs(i - (children.length - 1) / 2)
+            : STAGGER * i
+          return (
+            <motion.span
+              key={i}
+              variants={{ initial: { y: "100%" }, hovered: { y: 0 } }}
+              transition={{ ease: "easeInOut", delay, duration: 0.4 }}
+              className="inline-block"
+            >
+              {l === " " ? " " : l}
+            </motion.span>
+          )
+        })}
+      </div>
+    </motion.span>
+  )
+}
