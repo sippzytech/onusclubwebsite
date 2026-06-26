@@ -111,16 +111,15 @@ export default function Nav() {
             aria-label="Toggle menu"
             style={{
               display: 'none',
-              background: 'none',
+              background: scrolled ? 'none' : 'rgba(9,16,12,0.45)',
               border: 'none',
+              borderRadius: 6,
               cursor: 'pointer',
-              color: scrolled
-                ? 'var(--color-deep-coal)'
-                : 'var(--color-bone-white)',
-              padding: 4,
+              color: '#F4F1E9',
+              padding: 6,
             }}
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 

@@ -118,8 +118,9 @@ export default function Hero() {
         }
 
         @media (max-width: 860px) {
-          .hero-grid { grid-template-columns: 1fr; padding-top: 100px; gap: 28px; align-items: flex-start; }
-          .hero-h1 { font-size: clamp(32px, 9vw, 52px); text-align: left; }
+          .hero-grid { grid-template-columns: 1fr; padding-top: 100px; gap: 28px; align-items: center; }
+          .hero-h1 { font-size: clamp(32px, 9vw, 52px); text-align: center; align-items: center; }
+          .bottom-left { text-align: center; }
         }
       `}</style>
     </section>

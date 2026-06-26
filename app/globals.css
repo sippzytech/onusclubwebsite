@@ -117,6 +117,14 @@ body {
   /* FlowArt sections — disable overflow on mobile */
   [data-flow-section] { overflow: hidden; }
 
-  /* Hero font scale */
-  .hero-h1 { font-size: clamp(36px, 11vw, 56px) !important; }
+  /* Hero font scale + center alignment */
+  .hero-h1 {
+    font-size: clamp(36px, 11vw, 56px) !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  /* Hamburger always visible on mobile */
+  .nav-hamburger { display: block !important; }
+  .nav-links, .nav-cta { display: none !important; }
 }
