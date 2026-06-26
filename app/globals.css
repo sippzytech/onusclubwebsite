@@ -92,6 +92,13 @@ body {
   }
 }
 
+/* ── Nav responsive ─────────────────────────────────────────── */
+.nav-hamburger { display: none; }
+@media (max-width: 860px) {
+  .nav-hamburger { display: block; }
+  .nav-links, .nav-cta { display: none !important; }
+}
+
 /* ── Global mobile fixes ─────────────────────────────────────── */
 @media (max-width: 700px) {
   /* Tighter section padding on small screens */
@@ -124,7 +131,4 @@ body {
     align-items: center !important;
   }
 
-  /* Hamburger always visible on mobile */
-  .nav-hamburger { display: block !important; }
-  .nav-links, .nav-cta { display: none !important; }
 }

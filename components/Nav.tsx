@@ -110,12 +110,11 @@ export default function Nav() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             style={{
-              display: 'none',
               background: scrolled ? 'none' : 'rgba(9,16,12,0.45)',
               border: 'none',
               borderRadius: 6,
               cursor: 'pointer',
-              color: '#F4F1E9',
+              color: scrolled ? 'var(--color-deep-coal)' : '#F4F1E9',
               padding: 6,
             }}
           >

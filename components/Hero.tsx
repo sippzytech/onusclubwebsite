@@ -128,15 +128,15 @@ export default function Hero() {
         }
 
         @media (max-width: 860px) {
-          .hero-wrap { justify-content: center; padding-top: 64px; }
+          .hero-wrap { padding-top: 64px; }
           .hero-grid {
+            flex: 1;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            padding-top: 0; gap: 0; flex: unset;
+            padding-top: 0; gap: 0;
           }
           .hero-grid > div:last-child { display: none; }
           .hero-h1 { font-size: clamp(32px, 9vw, 52px); text-align: center; align-items: center; }
-          .hero-bottom { margin-top: auto; }
           .bottom-left { text-align: center; }
           .hero-bg-image { display: none !important; }
           .hero-overlay { display: none !important; }
