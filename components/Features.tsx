@@ -29,18 +29,21 @@ export default function Features() {
       .from('.feat-word',    { yPercent: 115, duration: 0.7, stagger: 0.055 }, '-=0.2')
       .from('.feat-lead',   { opacity: 0, y: 14, duration: 0.5 }, '-=0.3')
 
+    const grid = ref.current?.querySelector('.feat-grid')
+    if (!grid) return
+
     gsap.from('.feat-card', {
       opacity: 0, y: 40, duration: 0.65,
       stagger: { amount: 0.6, from: 'start' },
       ease: 'power3.out',
-      scrollTrigger: { trigger: '.feat-grid', start: 'top 84%', once: true },
+      scrollTrigger: { trigger: grid, start: 'top 84%', once: true },
     })
 
     gsap.from('.feat-icon-wrap', {
       scale: 0, duration: 0.45,
       stagger: { amount: 0.6, from: 'start' },
       ease: 'back.out(2.5)',
-      scrollTrigger: { trigger: '.feat-grid', start: 'top 84%', once: true },
+      scrollTrigger: { trigger: grid, start: 'top 84%', once: true },
     })
   }, { scope: ref })
 

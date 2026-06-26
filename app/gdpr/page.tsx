@@ -69,7 +69,7 @@ const FAQ = [
   },
   {
     q: 'How long is my data kept?',
-    a: 'Consumer loyalty data is retained for the duration of the programme plus 12 months. You can request deletion at any time by emailing privacy@onusclub.com.',
+    a: 'Consumer loyalty data is retained for the duration of the programme plus 12 months. You can request deletion at any time by emailing support@onusclub.com.',
   },
   {
     q: 'Is my data sold to third parties?',
@@ -185,7 +185,7 @@ export default function GDPRPage() {
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'center' }}>
             <a
-              href="mailto:privacy@onusclub.com"
+              href="mailto:support@onusclub.com"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 background: '#B0894F', color: '#14271C',
@@ -194,7 +194,7 @@ export default function GDPRPage() {
                 padding: '12px 22px',
               }}
             >
-              privacy@onusclub.com
+              support@onusclub.com
             </a>
             <span style={{ fontSize: 13, color: 'rgba(244,241,233,0.45)' }}>
               We respond within 30 days

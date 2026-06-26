@@ -34,7 +34,7 @@ The Service integrates with the Google Pay Passes API and Apple PassKit to provi
     title: '3. Merchant Accounts',
     content: `**Eligibility:** To create a merchant account, you must be at least 18 years old and operate a legitimate business. We reserve the right to decline or terminate accounts at our discretion.
 
-**Account security:** You are responsible for maintaining the confidentiality of your login credentials. You must notify us immediately at hello@onusclub.com if you suspect unauthorised access to your account.
+**Account security:** You are responsible for maintaining the confidentiality of your login credentials. You must notify us immediately at support@onusclub.com if you suspect unauthorised access to your account.
 
 **Accurate information:** You agree to provide accurate, current, and complete information when registering and to keep your account details up to date. Providing false information may result in immediate account termination.
 
@@ -62,7 +62,7 @@ Loyalty passes have no monetary value and are not transferable.`,
 
 **Taxes:** Prices are exclusive of VAT or other applicable taxes unless stated otherwise. You are responsible for any applicable taxes in your jurisdiction.
 
-**Refunds:** Subscription fees are generally non-refundable. If you believe you have been charged in error, contact us at hello@onusclub.com within 14 days of the charge.
+**Refunds:** Subscription fees are generally non-refundable. If you believe you have been charged in error, contact us at support@onusclub.com within 14 days of the charge.
 
 **Non-payment:** Failure to pay fees may result in suspension or termination of your account. We will provide reasonable notice before suspending access.`,
   },
@@ -124,7 +124,7 @@ Some jurisdictions do not allow the exclusion of certain warranties or limitatio
 
 **By us:** We may suspend or terminate your access to the Service immediately if you breach these Terms, fail to pay fees, or if we are required to do so by law. We will endeavour to give reasonable notice where possible.
 
-**Effect of termination:** Upon termination, your right to use the Service ceases immediately. We will retain your data for the period described in our Privacy Policy and then delete it. You may request a data export before termination by contacting hello@onusclub.com.
+**Effect of termination:** Upon termination, your right to use the Service ceases immediately. We will retain your data for the period described in our Privacy Policy and then delete it. You may request a data export before termination by contacting support@onusclub.com.
 
 Consumer loyalty passes issued before termination may remain in consumers' Wallets but will no longer be updated.`,
   },
@@ -150,7 +150,7 @@ Nothing in these Terms affects your rights as a consumer under applicable mandat
 
 **Force majeure:** OnUsClub is not liable for any failure or delay in performance caused by events beyond our reasonable control.
 
-**Contact:** For questions about these Terms, contact us at hello@onusclub.com.`,
+**Contact:** For questions about these Terms, contact us at support@onusclub.com.`,
   },
 ]
 

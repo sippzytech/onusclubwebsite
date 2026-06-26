@@ -8,7 +8,7 @@ import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/comp
 const SOCIAL = [
   { icon: MessageSquare, label: "Instagram",  href: "#", tip: "Follow us on Instagram" },
   { icon: Globe,         label: "Website",    href: "#", tip: "Visit our website" },
-  { icon: Mail,          label: "Email",      href: "mailto:hello@onusclub.com", tip: "Email us" },
+  { icon: Mail,          label: "Email",      href: "mailto:support@onusclub.com", tip: "Email us" },
 ]
 
 const NAV = [
@@ -145,10 +145,10 @@ export function FooterSection() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <Mail size={13} color="#B0894F" strokeWidth={1.5} />
-                <a href="mailto:hello@onusclub.com" className="fs-link" style={{
+                <a href="mailto:support@onusclub.com" className="fs-link" style={{
                   fontSize: 13, color: '#6e7860', textDecoration: 'none',
                 }}>
-                  hello@onusclub.com
+                  support@onusclub.com
                 </a>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

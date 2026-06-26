@@ -21,9 +21,9 @@ By using OnUsClub — whether as a merchant or as a consumer redeeming a loyalty
     content: `OnUsClub B.V. is the data controller for personal data processed through our platform.
 
 Contact details:
-Email: privacy@onusclub.com
+Email: support@onusclub.com
 Address: Netherlands
-For data-related enquiries please use: privacy@onusclub.com`,
+For data-related enquiries please use: support@onusclub.com`,
   },
   {
     id: 'what',
@@ -124,7 +124,7 @@ When data is no longer required, it is securely deleted or anonymised.`,
 - **Right to object** — object to processing based on legitimate interests or for direct marketing.
 - **Right to withdraw consent** — where processing is based on consent, you may withdraw at any time.
 
-To exercise any of these rights, contact us at privacy@onusclub.com. We will respond within 30 days. You also have the right to lodge a complaint with your national data protection authority (in the Netherlands: Autoriteit Persoonsgegevens — autoriteitpersoonsgegevens.nl).`,
+To exercise any of these rights, contact us at support@onusclub.com. We will respond within 30 days. You also have the right to lodge a complaint with your national data protection authority (in the Netherlands: Autoriteit Persoonsgegevens — autoriteitpersoonsgegevens.nl).`,
   },
   {
     id: 'cookies',
@@ -152,7 +152,7 @@ In the event of a personal data breach that is likely to result in a high risk t
   {
     id: 'children',
     title: '11. Children',
-    content: `OnUsClub is not directed at children under the age of 16. We do not knowingly collect personal data from children under 16. If you believe we have inadvertently collected such data, please contact us at privacy@onusclub.com and we will delete it promptly.`,
+    content: `OnUsClub is not directed at children under the age of 16. We do not knowingly collect personal data from children under 16. If you believe we have inadvertently collected such data, please contact us at support@onusclub.com and we will delete it promptly.`,
   },
   {
     id: 'changes',
@@ -164,8 +164,8 @@ In the event of a personal data breach that is likely to result in a high risk t
     title: '13. Contact Us',
     content: `For any privacy-related questions, requests, or complaints:
 
-Email: privacy@onusclub.com
-General contact: hello@onusclub.com
+Email: support@onusclub.com
+General contact: support@onusclub.com
 Address: Netherlands
 
 We aim to respond to all requests within 30 days.`,

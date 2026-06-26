@@ -19,8 +19,8 @@ export default function TextRoll({
     <motion.span
       initial="initial"
       whileHover="hovered"
-      className={cn("relative block overflow-hidden", className)}
-      style={{ lineHeight: 1 }}
+      className={cn("relative block", className)}
+      style={{ lineHeight: 1, overflow: 'hidden' }}
     >
       {/* Top row — slides up on hover */}
       <div>
@@ -31,6 +31,7 @@ export default function TextRoll({
           return (
             <motion.span
               key={i}
+              initial={{ y: 0 }}
               variants={{ initial: { y: 0 }, hovered: { y: "-100%" } }}
               transition={{ ease: "easeInOut", delay, duration: 0.4 }}
               className="inline-block"
@@ -41,7 +42,7 @@ export default function TextRoll({
         })}
       </div>
 
-      {/* Bottom row — slides in from below */}
+      {/* Bottom row — hidden below until hover; explicit initial keeps it in SSR HTML */}
       <div className="absolute inset-0">
         {children.split("").map((l, i) => {
           const delay = center
@@ -50,6 +51,7 @@ export default function TextRoll({
           return (
             <motion.span
               key={i}
+              initial={{ y: "100%" }}
               variants={{ initial: { y: "100%" }, hovered: { y: 0 } }}
               transition={{ ease: "easeInOut", delay, duration: 0.4 }}
               className="inline-block"

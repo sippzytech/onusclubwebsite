@@ -1,11 +1,16 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import TextRoll from '@/components/ui/text-roll'
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => { setMounted(true) }, [])
+
   return (
     <section style={{
+      visibility: mounted ? 'visible' : 'hidden',
       position: 'relative',
       width: '100%',
       height: '100vh',
