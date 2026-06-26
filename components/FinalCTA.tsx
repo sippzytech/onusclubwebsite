@@ -136,7 +136,7 @@ export default function FinalCTA() {
   }
 
   return (
-    <section ref={ref} id="demo" style={{ background: '#0d1c13', padding: '100px 6vw' }}>
+    <section ref={ref} id="demo" style={{ background: '#0d1c13', padding: 'clamp(56px, 8vw, 100px) clamp(16px, 6vw, 80px)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div className="cta-grid">
 

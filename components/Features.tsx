@@ -51,7 +51,7 @@ export default function Features() {
     <section
       ref={ref}
       id="features"
-      style={{ background: '#F4F1E9', padding: '100px 6vw' }}
+      style={{ background: '#F4F1E9', padding: 'clamp(56px, 8vw, 100px) clamp(16px, 6vw, 80px)' }}
     >
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 

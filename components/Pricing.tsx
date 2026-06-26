@@ -85,7 +85,7 @@ export default function Pricing() {
   }, [])
 
   return (
-    <section ref={ref} id="pricing" style={{ background: '#0d1c13', padding: '110px 6vw', overflow: 'hidden', position: 'relative' }}>
+    <section ref={ref} id="pricing" style={{ background: '#0d1c13', padding: 'clamp(56px, 8vw, 110px) clamp(16px, 6vw, 80px)', overflow: 'hidden', position: 'relative' }}>
 
       {/* Background glow */}
       <div style={{

@@ -99,7 +99,7 @@ export default function HowItWorks() {
         ref={headerRef}
         style={{
           background: '#F4F1E9',
-          padding: '96px 6vw 80px',
+          padding: 'clamp(56px, 7vw, 96px) clamp(16px, 6vw, 80px) clamp(40px, 6vw, 80px)',
           textAlign: 'center',
         }}
       >

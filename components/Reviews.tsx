@@ -64,7 +64,7 @@ export default function Reviews() {
   const sectionRef = useRef<HTMLElement>(null)
 
   return (
-    <section ref={sectionRef} id="reviews" style={{ background: '#F4F1E9', padding: '100px 6vw' }}>
+    <section ref={sectionRef} id="reviews" style={{ background: '#F4F1E9', padding: 'clamp(56px, 8vw, 100px) clamp(16px, 6vw, 80px)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
         {/* ── Header ──────────────────────────────────────────────── */}

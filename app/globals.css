@@ -94,21 +94,35 @@ body {
 
 /* ── Nav responsive ─────────────────────────────────────────── */
 .nav-hamburger { display: none; }
+
+/* ── Tablet / large mobile (≤860px) ─────────────────────────── */
 @media (max-width: 860px) {
   .nav-hamburger { display: block; }
   .nav-links, .nav-cta { display: none !important; }
+
+  /* Reviews bento → single column */
+  .rev-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+
+  /* Pricing card → full-width, hide features list */
+  .pr-layout {
+    grid-template-columns: 1fr !important;
+    max-width: 500px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .pr-features-col { display: none !important; }
+
+  /* Demo CTA → stack */
+  .cta-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+
+  /* Footer → 2 columns */
+  .fs-grid { grid-template-columns: 1fr 1fr !important; }
 }
 
-/* ── Global mobile fixes ─────────────────────────────────────── */
+/* ── Small mobile (≤700px) ───────────────────────────────────── */
 @media (max-width: 700px) {
-  /* Tighter section padding on small screens */
-  section, div[id] {
-    padding-left: max(16px, 4vw) !important;
-    padding-right: max(16px, 4vw) !important;
-  }
-
-  /* Prevent horizontal scroll from large SVGs / canvases */
-  .how-step-grid,
+  /* Collapse all grids to single column */
+  .hiw-step-grid,
   .rev-grid,
   .feat-grid,
   .pr-grid,
@@ -118,17 +132,16 @@ body {
     grid-template-columns: 1fr !important;
   }
 
-  /* Nav logo size */
+  /* Nav logo */
   nav img { width: 38px !important; height: 38px !important; }
 
-  /* FlowArt sections — disable overflow on mobile */
+  /* FlowArt overflow guard */
   [data-flow-section] { overflow: hidden; }
 
-  /* Hero font scale + center alignment */
+  /* Hero heading */
   .hero-h1 {
     font-size: clamp(36px, 11vw, 56px) !important;
     text-align: center !important;
     align-items: center !important;
   }
-
 }

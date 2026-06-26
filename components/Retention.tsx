@@ -83,11 +83,11 @@ export default function Retention() {
   }, [])
 
   return (
-    <section ref={ref} id="retention" style={{ background: '#0d1c13', padding: '100px 6vw' }}>
+    <section ref={ref} id="retention" style={{ background: '#0d1c13', padding: 'clamp(56px, 8vw, 100px) clamp(16px, 6vw, 80px)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
         {/* ── Header ──────────────────────────────────────────────── */}
-        <div style={{ marginBottom: 80, textAlign: 'center' }}>
+        <div style={{ marginBottom: 'clamp(40px, 6vw, 80px)', textAlign: 'center' }}>
           <p className="ret-eyebrow" style={{
             fontFamily: 'var(--font-lato), ui-sans-serif, system-ui, sans-serif',
             fontSize: 11, fontWeight: 700, letterSpacing: '0.16em',

@@ -40,7 +40,7 @@ export default function CardGallery() {
   }, { scope: ref })
 
   return (
-    <section ref={ref} style={{ background: '#F4F1E9', paddingTop: 96, paddingBottom: 0, overflow: 'hidden' }}>
+    <section ref={ref} style={{ background: '#F4F1E9', paddingTop: 'clamp(48px, 7vw, 96px)', paddingBottom: 0, overflow: 'hidden' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 6vw', marginBottom: 64, textAlign: 'center' }}>
 
         <p className="cg-eyebrow" style={{

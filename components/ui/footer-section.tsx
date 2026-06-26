@@ -42,7 +42,7 @@ export function FooterSection() {
       borderTop: '1px solid rgba(20,39,28,0.08)',
       color: '#14271C',
     }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '72px 6vw 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px, 6vw, 72px) clamp(16px, 6vw, 80px) 0' }}>
 
         {/* ── 4-column grid ─────────────────────────────────────── */}
         <div className="fs-grid">
