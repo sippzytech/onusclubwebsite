@@ -20,9 +20,9 @@ const NAV = [
 ]
 
 const LEGAL = [
-  { label: "Privacy Policy",  href: "#" },
-  { label: "Terms of Service", href: "#" },
-  { label: "GDPR",            href: "#" },
+  { label: "Privacy Policy",  href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "GDPR",            href: "/gdpr" },
 ]
 
 export function FooterSection() {
