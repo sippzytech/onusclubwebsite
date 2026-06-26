@@ -18,17 +18,27 @@ export default function Hero() {
       display: 'flex',
       flexDirection: 'column',
     }}>
+      {/* Desktop: photo. Mobile: hidden via CSS */}
       <Image
         src="/new_hero.jpg"
         alt=""
         fill
         priority
+        className="hero-bg-image"
         style={{ objectFit: 'cover', objectPosition: 'center' }}
       />
 
-      <div aria-hidden="true" style={{
+      {/* Desktop overlay */}
+      <div aria-hidden="true" className="hero-overlay" style={{
         position: 'absolute', inset: 0,
         background: 'linear-gradient(to right, rgba(9,16,12,0.65) 0%, rgba(9,16,12,0.4) 45%, rgba(9,16,12,0) 70%)',
+      }} />
+
+      {/* Mobile gradient background */}
+      <div aria-hidden="true" className="hero-mobile-bg" style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(160deg, #0d3320 0%, #14271C 40%, #0a1f12 70%, #061409 100%)',
+        display: 'none',
       }} />
 
       <div className="hero-wrap">
@@ -121,6 +131,9 @@ export default function Hero() {
           .hero-grid { grid-template-columns: 1fr; padding-top: 100px; gap: 28px; align-items: center; }
           .hero-h1 { font-size: clamp(32px, 9vw, 52px); text-align: center; align-items: center; }
           .bottom-left { text-align: center; }
+          .hero-bg-image { display: none !important; }
+          .hero-overlay { display: none !important; }
+          .hero-mobile-bg { display: block !important; }
         }
       `}</style>
     </section>
