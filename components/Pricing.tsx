@@ -225,7 +225,7 @@ export default function Pricing() {
 
             {/* CTA */}
             <a
-              href="#demo"
+              href="https://app.onusclub.com/signup"
               className="pr-cta"
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -240,7 +240,7 @@ export default function Pricing() {
               onMouseEnter={e => (e.currentTarget.style.background = '#B0894F')}
               onMouseLeave={e => (e.currentTarget.style.background = '#14271C')}
             >
-              <span>Start 14-day free trial</span>
+              <span>Get started free</span>
               <ArrowRight size={16} />
             </a>
 

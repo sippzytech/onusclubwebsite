@@ -99,8 +99,8 @@ export default function Nav() {
             className="nav-cta"
             style={{ display: 'flex', alignItems: 'center', gap: 12 }}
           >
-            <Button variant="fill" href="#demo">
-              Book a demo
+            <Button variant="fill" href="https://app.onusclub.com/signup">
+              Get started free
             </Button>
           </div>
 
@@ -150,8 +150,8 @@ export default function Nav() {
               </a>
             ))}
             <div style={{ marginTop: 20 }}>
-              <Button variant="fill" href="#demo">
-                Book a demo
+              <Button variant="fill" href="https://app.onusclub.com/signup">
+                Get started free
               </Button>
             </div>
           </div>

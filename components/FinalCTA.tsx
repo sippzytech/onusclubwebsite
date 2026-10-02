@@ -97,6 +97,12 @@ export default function FinalCTA() {
   const [form, setForm] = useState<Fields>(EMPTY)
   const [errors, setErrors] = useState<Partial<Fields>>({})
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  // Submission failure needs its own state. Previously any failure was
+  // indistinguishable from success, because there was no request to fail.
+  const [sendError, setSendError] = useState<string | null>(null)
+  // Honeypot: hidden from humans, irresistible to bots that fill every input.
+  const [website, setWebsite] = useState('')
 
   useGSAP(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -121,11 +127,41 @@ export default function FinalCTA() {
     return e
   }
 
-  function handleSubmit(ev: React.FormEvent) {
+  async function handleSubmit(ev: React.FormEvent) {
     ev.preventDefault()
     const e = validate()
     if (Object.keys(e).length) { setErrors(e); return }
-    setSubmitted(true)
+
+    setSending(true)
+    setSendError(null)
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          source: 'demo',
+          email: form.email.trim(),
+          name: form.name.trim() || undefined,
+          businessName: form.business.trim() || undefined,
+          businessType: form.type || undefined,
+          phone: form.phone.trim() || undefined,
+          message: form.message.trim() || undefined,
+          website,
+        }),
+      })
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string }
+      if (!res.ok || !data.ok) {
+        // Only claim success when the lead is actually stored. Showing the
+        // success state regardless is the bug this replaces.
+        setSendError(data.error ?? 'Something went wrong. Please try again.')
+        return
+      }
+      setSubmitted(true)
+    } catch {
+      setSendError('Could not reach the server. Please check your connection and try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   function set(field: keyof Fields) {
@@ -240,12 +276,39 @@ export default function FinalCTA() {
                     className="cta-input" style={{ ...inputStyle(false), resize: 'vertical', minHeight: 80 }} />
                 </Field>
 
-                <button type="submit" className="cta-submit">
-                  Book my demo →
+                {/* Honeypot. Hidden from people and from screen readers; a bot
+                    that fills every input gives itself away. */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+                  <label htmlFor="website">Website</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={e => setWebsite(e.target.value)}
+                  />
+                </div>
+
+                <button type="submit" className="cta-submit" disabled={sending}
+                  style={sending ? { opacity: 0.6, cursor: 'wait' } : undefined}>
+                  {sending ? 'Sending…' : 'Book my demo →'}
                 </button>
+
+                {sendError && (
+                  <p role="alert" style={{ fontSize: 13, color: '#b4372c', textAlign: 'center', marginTop: 14 }}>
+                    {sendError}
+                  </p>
+                )}
 
                 <p style={{ fontSize: 12, color: '#6e7860', textAlign: 'center', marginTop: 14 }}>
                   We respond within one business day.
+                </p>
+
+                <p style={{ fontSize: 11, color: '#6e7860', textAlign: 'center', marginTop: 10, lineHeight: 1.5 }}>
+                  We use these details only to contact you about OnUsClub. See our{' '}
+                  <a href="/privacy" style={{ color: '#B0894F', textDecoration: 'underline' }}>privacy policy</a>.
                 </p>
               </form>
             )}

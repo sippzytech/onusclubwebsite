@@ -29,11 +29,23 @@ export function FooterSection() {
   const [email, setEmail] = React.useState("")
   const [sent, setSent] = React.useState(false)
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!email || !/\S+@\S+\.\S+/.test(email)) return
-    setSent(true)
-    setEmail("")
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ source: "newsletter", email: email.trim() }),
+      })
+      // Only confirm once it is actually stored. This form used to clear
+      // itself and say "sent" without sending anything anywhere.
+      if (!res.ok) return
+      setSent(true)
+      setEmail("")
+    } catch {
+      // Leave the field populated so the visitor can retry without retyping.
+    }
   }
 
   return (
