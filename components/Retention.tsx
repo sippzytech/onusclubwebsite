@@ -13,7 +13,7 @@ const ROI = [
   {
     num: 5, suffix: '×',
     label: 'More Google Reviews',
-    body: 'Automated review rewards get you 5× more Google reviews, boosting local SEO and building trust with new customers.',
+    body: 'Ask at the moment a customer claims their reward, when they are happiest with you. More reviews means stronger local SEO and more trust with new customers.',
   },
   {
     num: 60, suffix: '%',
