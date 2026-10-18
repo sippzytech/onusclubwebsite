@@ -4,7 +4,9 @@ export const NAV_LINKS = [
   { label: 'How it works', href: '#how' },
   { label: 'Features', href: '#features' },
   { label: 'Pricing', href: '#pricing' },
-  { label: 'Reviews', href: '#reviews' },
+  // 'Reviews' removed with the testimonials section in app/page.tsx — the
+  // anchor no longer exists, so the link scrolled nowhere. Restore both
+  // together when there are real quotes to show.
   { label: 'FAQ', href: '#faq' },
 ]
 
