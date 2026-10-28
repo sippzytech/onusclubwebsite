@@ -62,6 +62,14 @@ export const FEATURES = [
     p: 'A clean staff dashboard that adds a stamp in one tap. No training, no extra hardware, no slowing down the queue.',
   },
   {
+    // M1. The rule has existed in cards/operations.ts since the scanner
+    // shipped — one stamp per card per day — and was mentioned nowhere a
+    // merchant could see it. A competitor sells the same thing as a headline
+    // feature, so it was costing us credibility we had already earned.
+    h: 'Nobody can game the card',
+    p: 'One stamp per card per day, enforced automatically. A customer cannot collect a week of stamps in one visit, and your staff do not have to police it.',
+  },
+  {
     h: 'Repeat-visit analytics',
     p: "See who's coming back, how often, and what's working. Prove the program is paying for itself.",
   },

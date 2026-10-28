@@ -229,6 +229,8 @@ export function FooterSection() {
         }}>
           <p style={{ fontSize: 12, color: 'rgba(20,39,28,0.35)' }}>
             © {new Date().getFullYear()} OnUsClub. All rights reserved. Made in the Netherlands.
+            {' '}Apple Wallet is a trademark of Apple Inc. Google Wallet is a trademark of
+            Google LLC.
           </p>
           <nav style={{ display: 'flex', gap: 20 }}>
             {LEGAL.map(link => (

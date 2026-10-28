@@ -6,13 +6,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import {
   SmartphoneNfc, CreditCard, FolderOpen, Bell,
-  ScanLine, BarChart3, Gift, MapPin, Palette,
+  ScanLine, BarChart3, Gift, MapPin, Palette, ShieldCheck,
 } from 'lucide-react'
 import { FEATURES } from '@/lib/content'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-const ICONS = [SmartphoneNfc, CreditCard, FolderOpen, Bell, ScanLine, BarChart3, Gift, MapPin, Palette]
+// ⚠️ Positional: ICONS[i] pairs with FEATURES[i]. Adding a feature without an
+// icon here renders `undefined` as a component and fails the PRODUCTION build
+// with "Element type is invalid" — it compiles fine and dies at prerender.
+const ICONS = [SmartphoneNfc, CreditCard, FolderOpen, Bell, ScanLine, BarChart3, Gift, MapPin, Palette, ShieldCheck]
 const H2_WORDS = 'Loyalty that does the heavy lifting.'.split(' ')
 
 export default function Features() {
@@ -95,7 +98,8 @@ export default function Features() {
         {/* ── Grid ──────────────────────────────────────────────── */}
         <div className="feat-grid">
           {FEATURES.map((feat, i) => {
-            const Icon = ICONS[i]
+            // Falls back rather than crashing the build if the arrays drift.
+            const Icon = ICONS[i] ?? ShieldCheck
             return (
               <div
                 key={feat.h}
